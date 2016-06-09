@@ -20,8 +20,8 @@ function showtime(){
 
 function setHeartToWord () {
 	document.getElementById("myHeart").style="opacity:1;";
-
 	document.getElementById("myHeart").innerHTML="WangLu, I ♥ you.";
+	document.getElementById("myHeart").style="margin-left: 24%;";
 }
 
 function setWordToHeart () {
