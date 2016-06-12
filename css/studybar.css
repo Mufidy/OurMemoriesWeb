@@ -1,0 +1,338 @@
+body{
+	background-color: #EEEEE0;
+}
+
+.site-header{
+	margin-top: 0px;
+}
+
+.head_title { 
+	float: left; 
+	width: 100%; 
+	font-size: 40px; 
+	color: #1abc9c;
+	font-weight: 400; 
+	margin-top: 10px;
+}
+
+.head_title a { 
+	color: #1abc9c; 
+}
+
+.head_subtitle { 
+	margin-top: 7px; 
+	font-size: 28px; 
+	color: white;
+}
+
+.head_search { 
+ 	float: left; 
+	width: 100%;
+	margin-top: 40px;
+}
+.head_search input { 
+ 	border: 1px solid #cccccc; 
+	padding: 7px; 
+	width: 100%; 
+	font-style: italic; 
+	color: #999999;
+}
+
+::-webkit-input-placeholder { 
+ /* WebKit browsers */
+    color: #999999;
+}
+:-moz-placeholder { 
+ /* Mozilla Firefox 4 to 18 */
+    color: #999999;
+}
+::-moz-placeholder { 
+ /* Mozilla Firefox 19+ */
+    color: #999999;
+}
+:-ms-input-placeholder { 
+ /* Internet Explorer 10+ */
+    color: #999999;
+}
+
+.site-header{
+	width: 100%;
+	height: 60px;
+	background-color: #1abc9c;
+}
+
+.site-header-a{
+	margin-top: 10px;
+	margin-left: 15px;
+}
+.site-header-btn{
+	background-color: #1abc9c;
+	font-size: 26px;
+	border: 0px;
+}
+
+.site-header a{
+	font-size: 26px; 
+	color: white;
+	text-decoration:none;
+}
+
+.head_search_input { 
+ 	border: 1px solid #cccccc;
+	padding: 7px; 
+	height: 100%;
+	width: 100%; 
+	font-style: italic; 
+	color: #999999;
+}
+
+.homepage_pic{
+	height: 600px;
+	overflow: hidden;
+}
+
+.recommend_course{
+	margin-top: 10px;
+
+}
+
+.recommend_course a{
+	color: #1abc9c; 
+	text-decoration:none;
+	font-size: 20px;
+}
+
+.recommend_text_course{
+	font-family: "Microsoft YaHei", "微软雅黑";
+	height: 55px;
+	float: left; 
+	font-size: 40px; 
+	color: #1abc9c;
+	font-weight: 400; 
+	margin-top: 5px;
+	cursor:pointer;
+}
+
+.recommend_per_course{
+	margin-top: 15px;
+	overflow: hidden;
+	height: 120px;
+	background-color: white;
+
+}
+
+.recommend_per_txt{
+	margin-top: -13px;
+	height: 30px;
+	background-color: white;
+}
+
+.related_per_course{
+	margin-top: 15px;
+	overflow: hidden;
+	height: 120px;
+	background-color: white;
+}
+
+.related_per_txt{
+	height: 30px;
+	margin-top: 2px;
+	background-color: white;
+}
+
+.account_content{
+	margin-top: 20px;
+}
+
+.account_content a{
+	text-decoration:none;
+	color: #1abc9c;
+}
+
+.account_content_head{
+	height: 40px;
+	margin-top: 0px;
+	margin-left: -20px;
+	font-family: "Microsoft YaHei", "微软雅黑";
+	font-size: 28px;
+	color: #1abc9c;
+}
+
+.account_pic{
+	height: 180px;
+	background-color: white;
+	padding-left: 40px;
+}
+
+.account_txt{
+	height: 180px;
+	font-family: STXihei, "华文细黑";
+	font-size: 22px;
+	font-weight:600;
+	background-color: white;
+}
+
+.bought_course a{
+	color: #1abc9c; 
+	text-decoration:none;
+	font-size: 20px;
+}
+
+.related_course a{
+	color: #1abc9c; 
+	text-decoration:none;
+	font-size: 20px;
+}
+
+.login_imac{
+	text-align: center;
+}
+
+.login_text{
+	margin-top: -280px;
+	margin-left: 76px;
+	position: absolute;
+	font-family:"Microsoft YaHei",Tahoma,Verdana,SimSun;
+    color:#333;
+    line-height:normal;
+    font-size:22px;
+    font-style:normal;
+}
+
+.login_pwd{
+	margin-top: -220px;
+	margin-left: 76px;
+	position: absolute;
+	font-family:"Microsoft YaHei",Tahoma,Verdana,SimSun;
+    color:#333;
+    line-height:normal;
+    font-size:22px;
+    font-style:normal;
+}
+
+.login_btn{
+	margin-top: -160px;
+	margin-left: 226px;
+	position: absolute;
+    color:#333;
+    line-height:normal;
+    font-style:normal;
+}
+
+.login_btn_txt{
+	font-family:"Microsoft YaHei",Tahoma,Verdana,SimSun;
+	font-size:24px;
+}
+
+.login_text_u{
+	margin-top: -30px;
+	margin-left: 80px;
+}
+
+.login_text_u:focus{
+	border: 2px solid #1abc9c;
+}
+.login_text_u:hover{
+	border: 2px solid #1abc9c;
+}
+
+.login_text_p{
+	margin-top: -30px;
+	margin-left: 80px;
+}
+
+.login_text_p:focus{
+	border: 2px solid #1abc9c;
+}
+.login_text_p:hover{
+	border: 2px solid #1abc9c;
+}
+
+.register_content{
+	font-family:"Microsoft YaHei",Tahoma,Verdana,SimSun;
+	font-size: 22px;
+	color: #1abc9c;
+}
+
+.register_content_head{
+	margin-top: 10px;
+	color: #1abc9c;
+	font-size: 28px;
+}
+
+.register_txt{
+
+}
+
+.register_txt_input{
+}
+
+.register_txt_input:focus{
+	border: 1px solid #1abc9c;
+}
+.register_txt_input:hover{
+	border: 1px solid #1abc9c;
+}
+
+.message_content{
+	font-family:"Microsoft YaHei",Tahoma,Verdana,SimSun;
+	font-size: 22px;
+	color: #1abc9c;
+}
+
+.message_content_head{
+	margin-top: 10px;
+	color: #1abc9c;
+	font-size: 28px;
+}
+
+.message_content_category{
+	height: 600px;
+	border: 1px solid white;
+}
+.message_content_category ul{
+	width: 100%;
+	background-color: white;
+	margin-top: 100px;
+	cursor: pointer;
+}
+.message_content_category span{
+	color: red;
+	font-size: 16px;
+	float: right;
+	margin-top: 4px;
+	margin-right: 20px;
+}
+
+
+.message_content_detail{
+	height: 600px;
+	border: 1px solid white;
+	overflow:auto;
+}
+
+.docview_content{
+	font-family:"Microsoft YaHei",Tahoma,Verdana,SimSun;
+	font-size: 22px;
+	color: #1abc9c;
+}
+
+.docview_content_head{
+	margin-top: 10px;
+	color: #1abc9c;
+	font-size: 28px;
+}
+
+.docview_detail{
+	margin-top: 30px;
+	height: 600px;
+	overflow: auto;
+	background-color: white;
+}
+
+.docview_recommend{
+	margin-top: 30px;
+	height: 600px;
+	overflow: auto;
+	background-color: white;
+}
