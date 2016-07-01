@@ -213,9 +213,9 @@ return [
 
     //全局替换
     'view_replace_str'=>[
-        '__CSS__'   => '/tp5/public/css/',
-        '__JS__'    => '/tp5/public/js/',
-        '__IMG__'   => '/tp5/public/images/',
-        '__ROOT__'  => '/tp5/',
+        '__CSS__'   => '/css/',
+        '__JS__'    => '/js/',
+        '__IMG__'   => '/images/',
+        '__ROOT__'  => '/',
     ],
 ];
