@@ -57,5 +57,15 @@ a:active{
 	height: 200px;
 	vertical-align:text-top;
 	margin-top:-450px; 
+}
 
+.menu{
+	background-color: #8FBCA6;
+	height: 45px;
+}
+
+.menu a{
+	font-size: 32px;
+	font-family: "Droid Sans";
+	cursor: pointer;
 }
