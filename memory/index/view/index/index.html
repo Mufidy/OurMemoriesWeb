@@ -1,0 +1,58 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="__CSS__bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="__CSS__ourmemery.css" type="text/css" />
+    <link rel="stylesheet" href="__CSS__studybar.css" type="text/css" />
+    <link rel="stylesheet" href="__CSS__buttons.css" type="text/css" />
+	<script src="__JS__jquery-1.11.1.min.js"></script>
+	<script src="__JS__bootstrap.js"></script>
+	<script src="__JS__ourmemery.js"></script>
+
+	<script type="text/javascript">
+　　window.onload = showtime;//不要括号//yesterday  we remember,future we expect,memorial days
+	</script>
+
+	<title>Our Memeries</title>
+
+</head>
+<body>
+	{include file="public/menu" /}
+
+	<h1 style="text-align:center;font-family: 'Droid Sans';"id="ourtime"></h1>
+	<div class="heart" id="myHeart" onmouseover="setHeartToWord();" onmouseout="setWordToHeart();">♥</div><br/><br/>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 outline_m">
+				<img src="__IMG__wish.ico"><br>
+				<div class="outline_text">
+					<a href="yesterday">yesterday we remember</a>
+				</div>
+			</div>
+			<div class="col-md-4 outline_m">
+				<img src="__IMG__time.ico"><br>
+				<div class="outline_text">
+					<a href="tomorrow">tomorrow we expect</a>
+				</div>				
+			</div>
+			<div class="col-md-4 outline_m">
+				<img src="__IMG__memorial.ico"><br>
+				<div class="outline_text">
+					<a href="memorial">memorial days</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-10"></div>
+			<div class="col-md-2">
+				<img src="__IMG__hellokitty5.ico" style="margin-top:-400px;">
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
