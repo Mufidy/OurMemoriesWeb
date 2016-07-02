@@ -1,0 +1,75 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="__CSS__bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="__CSS__ourmemery.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__studybar.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__BeatPicker.css" type="text/css" />
+	<script src="__JS__jquery-1.11.1.min.js"></script>
+	<script src="__JS__bootstrap.js"></script>
+  <script src="__JS__ourmemery.js"></script>
+	<script src="__JS__BeatPicker.js"></script>
+
+	<title>yesterday we remember</title>
+
+</head>
+
+<body>
+	{include file="public/menu" /}
+
+  <h1 class="title">添加海飞与路路的幸福回忆</h1>
+  <br/>
+     
+  <form action="{:url('insertIntoYesterday')}" method="post">    
+  
+  <div class="container addyesterday">
+    
+    <div class="row">
+      <div class="col-md-4 addlabel">日期:&nbsp;</div>
+      <div class="col-md-1"></div>
+      <div class="col-md-5 addcontent">
+        <input type="text" data-beatpicker="true" data-beatpicker-module="clear" name="date" placeholder="yyyy-mm-dd" class="addinput" />
+      </div>
+      <br/><br/><br/>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 addlabel">标题:&nbsp;</div>
+      <div class="col-md-1"></div>
+      <div class="col-md-5 addcontent"><input type="text" name="title" placeholder="请输入回忆标题" class="addinput"></div>
+      <br/><br/><br/>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 addlabel">是否高亮:&nbsp;</div>
+      <div class="col-md-1"></div>
+      <div class="col-md-5 addcontent">
+        <input type="radio" name="highlight" value="y">是</input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="highlight" value="n" checked="checked" >否</input>
+      </div>
+      <br/><br/><br/>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 addlabel">回忆内容:&nbsp;</div>
+      <div class="col-md-1"></div>
+      <div class="col-md-5 addcontent">
+         <textarea rows="3" cols="30" name="content" placeholder="请输入回忆内容" class="addinput"></textarea>
+      </div>
+      <br/><br/><br/>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5"></div>
+      <div class="col-md-2 addcontent">
+        <br/>
+        <input type="submit" />
+      </div>
+      <br/><br/><br/>
+    </div>
+
+  </div>
+  </form>
+</body>
+
+</html>

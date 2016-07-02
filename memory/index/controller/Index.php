@@ -9,7 +9,7 @@ class Index extends Controller
 {
     public function index()
     {
-    	$this->assign("data",session('username'));
+    	$this->assign("username",session('username'));
         return $this->fetch();
     }
 
@@ -29,7 +29,7 @@ class Index extends Controller
 	   		return $this->success($message,null,'',1);
 	   	}else
 	   	{
-	   		return "false";
+	   		return $this->error("用户名或密码错误哦",null,'',2);
 	   	}
 
     }
@@ -38,24 +38,38 @@ class Index extends Controller
     {
     	session('uid',null);
 	    session('username',null);
-	    $this->redirect('index');
+	    $this->redirect('/');
     }
 
     public function memorial()
     {
-    	$this->assign("data",session('username'));
+    	$this->assign("username",session('username'));
     	return $this->fetch();
     }
 
     public function yesterday()
-    {
-    	$this->assign("data",session('username'));
+    {   
+        $years = Db::query("select year from yesterday group by year order by year desc");
+        foreach ($years as $year) {
+            $yearData = Db::name('yesterday')->where('year', $year['year'])->order('month desc,day desc')->select();
+            $data[$year['year']] = $yearData;
+            
+        }
+        //echo $data;
+        $this->assign("data",$data);
+    	$this->assign("username",session('username'));
     	return $this->fetch();
     }
 
     public function tomorrow()
     {
-    	$this->assign("data",session('username'));
+    	$this->assign("username",session('username'));
     	return $this->fetch();
+    }
+
+    public function addYesterday()
+    {
+        $this->assign("username",session('username'));
+        return $this->fetch();
     }
 }

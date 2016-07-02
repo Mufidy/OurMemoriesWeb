@@ -5,22 +5,75 @@
 	<link rel="stylesheet" href="__CSS__ourmemery.css" type="text/css" />
     <link rel="stylesheet" href="__CSS__studybar.css" type="text/css" />
     <link rel="stylesheet" href="__CSS__buttons.css" type="text/css" />
+    <link rel="stylesheet" href="__CSS__yesterday.css" type="text/css" />
 	<script src="__JS__jquery-1.11.1.min.js"></script>
 	<script src="__JS__bootstrap.js"></script>
 	<script src="__JS__ourmemery.js"></script>
 
-	<script type="text/javascript">
-　　window.onload = showtime;//不要括号//yesterday  we remember,future we expect,memorial days
-	</script>
-
 	<title>yesterday we remember</title>
 
 </head>
+
 <body>
 	{include file="public/menu" /}
-	
-	yesterday
 
+<div class="content">
+  <div class="wrapper">
+    <div class="light"><i></i></div>
+    <hr class="line-left">
+    <hr class="line-right">
 
+    <div class="main">
+      <h1 class="title">海飞与路路的幸福回忆</h1>
+
+      {volist name="data" id="oneyear"}
+      <div class="year">
+        <h2><a href="#">{$key}年<i></i></a></h2>
+
+        <div class="list">
+          <ul>
+          	{volist name="oneyear" id="onedata"}
+          	{if condition="$onedata.highlight eq 1"}
+            <li class="cls highlight">
+            {else /}
+            <li class="cls">
+            {/if}
+              <p class="date">{$onedata.month}月{$onedata.day}日</p>
+              <p class="intro">{$onedata.title}</p>
+              <p class="version">{empty name="$onedata.togetherDay"}&nbsp;{else /}{$onedata.togetherDay}{/empty}</p>
+              <div class="more">
+                <p>{$onedata.content}</p>
+                <!--<p><img src="__IMG__time.ico"></p>-->
+              </div>
+            </li>
+   			{/volist}
+          </ul>
+        </div>
+      </div>
+      {/volist}
+
+      <div class="edit">
+      	<a href="addYesterday">
+      		<p>添加回忆</p>
+      		<img src="__IMG__edit.ico">
+      	</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+	$(".main .year .list").each(function (e, target) {
+	    var $target=  $(target),
+	        $ul = $target.find("ul");
+	    $target.height($ul.outerHeight()), $ul.css("position", "absolute");
+	}); 
+	$(".main .year>h2>a").click(function (e) {
+	    e.preventDefault();
+	    $(this).parents(".year").toggleClass("close1");
+	});
+	</script>
 </body>
+
 </html>

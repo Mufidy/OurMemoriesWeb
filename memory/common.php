@@ -14,3 +14,4 @@
  \think\Route::rule('tomorrow','index/index/tomorrow');
  \think\Route::rule('yesterday','index/index/yesterday');
  \think\Route::rule('memorial','index/index/memorial');
+ \think\Route::rule('addYesterday','index/index/addYesterday');
