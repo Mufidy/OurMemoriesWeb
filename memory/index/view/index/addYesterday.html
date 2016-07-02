@@ -20,7 +20,7 @@
   <h1 class="title">添加海飞与路路的幸福回忆</h1>
   <br/>
      
-  <form action="{:url('insertIntoYesterday')}" method="post">    
+  <form action="{:url('insertIntoYesterday')}" name="f" onsubmit="return checkForm()" method="post">    
   
   <div class="container addyesterday">
     
@@ -71,5 +71,24 @@
   </div>
   </form>
 </body>
+
+<script>
+function checkForm()
+{
+  if (document.forms["f"]["date"].value=="") {
+    alert("请输入回忆日期哦宝贝儿~");
+    return false;
+  }
+  if (document.forms["f"]["title"].value=="") {
+    alert("请输入回忆标题哦宝贝儿~");
+    return false;
+  }
+  if (document.forms["f"]["content"].value=="") {
+    alert("请输入回忆内容哦宝贝儿~");
+    return false;
+  }
+  return true;
+}
+</script>
 
 </html>
