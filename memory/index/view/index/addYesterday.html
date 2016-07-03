@@ -44,8 +44,8 @@
       <div class="col-md-4 addlabel">是否高亮:&nbsp;</div>
       <div class="col-md-1"></div>
       <div class="col-md-5 addcontent">
-        <input type="radio" name="highlight" value="y">是</input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="radio" name="highlight" value="n" checked="checked" >否</input>
+        <input type="radio" name="highlight" value="highlightYes">是</input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="radio" name="highlight" value="highlightNo" checked="checked" >否</input>
       </div>
       <br/><br/><br/>
     </div>
@@ -54,9 +54,18 @@
       <div class="col-md-4 addlabel">回忆内容:&nbsp;</div>
       <div class="col-md-1"></div>
       <div class="col-md-5 addcontent">
-         <textarea rows="3" cols="30" name="content" placeholder="请输入回忆内容" class="addinput"></textarea>
+         <textarea rows="3" cols="30" name="content" placeholder="请输入回忆内容（支持回车换行）" class="addinput"></textarea>
       </div>
-      <br/><br/><br/>
+      <br/><br/><br/><br/><br/><br/>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 addlabel">备注:&nbsp;</div>
+      <div class="col-md-1"></div>
+      <div class="col-md-5 addcontent">
+         <label class="addinput"><input name="togetherDay" type="checkbox" value="yes"/>&nbsp;&nbsp;同时添加在一起的时间（天数）</label> 
+      </div>
+      <br/><br/>
     </div>
 
     <div class="row">

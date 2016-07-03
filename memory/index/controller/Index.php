@@ -72,4 +72,42 @@ class Index extends Controller
         $this->assign("username",session('username'));
         return $this->fetch();
     }
+
+    public function insertIntoYesterday()
+    {
+        $date = input('post.date');
+        $dateArr = explode('-',$date);
+        $year = intval($dateArr[0]);
+        $month = intval($dateArr[1]);
+        $day = intval($dateArr[2]);
+        $title = input('post.title');
+        $highlightStr = input('post.highlight');
+        $highlight = $highlightStr=="highlightYes"?1:0;
+        $content = input('post.content');
+        $content = str_replace(PHP_EOL,'<br>',$content);
+        $togetherDay = input('post.togetherDay');
+        if ($togetherDay == "yes") 
+        {
+            $startdate=strtotime("2014-11-7");
+            $enddate=strtotime($date);
+            $togetherDay=round(($enddate-$startdate)/86400);
+        }
+        
+        $insertData['year'] = $year;
+        $insertData['month'] = $month;
+        $insertData['day'] = $day;
+        $insertData['title'] = $title;
+        $insertData['highlight'] = $highlight;
+        $insertData['content'] = $content;
+        $insertData['togetherDay'] = $togetherDay;
+
+        $result = Db::name('yesterday')->insert($insertData);
+        if ($result == 1)
+        {
+            $this->redirect('/yesterday');
+        }else
+        {
+            return $this->error("系统故障，数据添加失败，请稍后再试~",null,'',3);
+        }
+    }
 }
