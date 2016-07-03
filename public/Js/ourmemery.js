@@ -12,9 +12,10 @@ function showtime(){
 	var leave3=leave2%(60*1000);     //计算分钟数后剩余的毫秒数
 	var seconds=Math.round(leave3/1000);
 	if (seconds==60) {seconds=0};
-	document.getElementById("ourtime").innerHTML="<h1 style='font-size:50px'>我们已经相伴走过</h1><span style='font-size:50px;font-weight:bold;'>"+days
-		+"</span>&nbsp;&nbsp;天<br/><span style='font-size:50px;font-weight:bold;'>"+hours+"</span>&nbsp;&nbsp;小时<br/><span style='font-size:50px;font-weight:bold;'>"
-		+minutes+"</span>&nbsp;&nbsp;分钟<br/><span style='font-size:50px;font-weight:bold;'>"+seconds+"</span>&nbsp;&nbsp;秒啦!";
+	document.getElementById("ourtimeDay").innerHTML=days;
+	document.getElementById("ourtimeHour").innerHTML=hours;
+	document.getElementById("ourtimeMinute").innerHTML=minutes;
+	document.getElementById("ourtimeSecond").innerHTML=seconds;
 	t=setTimeout("showtime()",1000);
 }
 

@@ -1,6 +1,6 @@
 @font-face{
-	font-family: "Droid Sans";
-	src:url('font/Droid Sans.ttf');
+	font-family: "MwCuteFont";
+	src:url('font/KittenKlub.ttf');
 }
 
 @keyframes pound{
@@ -15,7 +15,7 @@
 	display: inline-block;
 	font-size: 100px;
 	color: #e00;
-	font-family: "Droid Sans";
+	font-family: "MwCuteFont";
 	animation: pound  0.5s infinite alternate;
 	transform-origin: center;
 }
@@ -37,10 +37,17 @@ a:visited{
 }
 a:hover{
 	text-decoration:none;
-	font-family: "Droid Sans";
+	font-family: "MwCuteFont";
 }
 a:active{
 	text-decoration:none;
+}
+
+.ourtime{
+	font-family: "MwCuteFont";
+	font-size:40px;
+	font-weight:bold;
+	text-align:center;
 }
 
 .outline_m{
