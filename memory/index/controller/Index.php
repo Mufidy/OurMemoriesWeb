@@ -7,6 +7,17 @@ use think\Session;
 
 class Index extends Controller
 {
+    protected function checkLogin()
+    {
+        if(session('username') != null)
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
+
     public function index()
     {
     	$this->assign("username",session('username'));
@@ -43,12 +54,21 @@ class Index extends Controller
 
     public function memorial()
     {
+        if(!($this->checkLogin()))
+        {
+            return $this->error("访问隐私数据需要登录哦！","/",'',2);
+        }
     	$this->assign("username",session('username'));
     	return $this->fetch();
     }
 
     public function yesterday()
     {   
+        if(!($this->checkLogin()))
+        {
+            return $this->error("访问隐私数据需要登录哦！","/",'',2);
+        }
+
         $years = Db::query("select year from yesterday group by year order by year desc");
         foreach ($years as $year) {
             $yearData = Db::name('yesterday')->where('year', $year['year'])->order('month desc,day desc')->select();
@@ -63,12 +83,22 @@ class Index extends Controller
 
     public function tomorrow()
     {
+        if(!($this->checkLogin()))
+        {
+            return $this->error("访问隐私数据需要登录哦！","/",'',2);
+        }
+
     	$this->assign("username",session('username'));
     	return $this->fetch();
     }
 
     public function addYesterday()
     {
+        if(!($this->checkLogin()))
+        {
+            return $this->error("访问隐私数据需要登录哦！","/",'',2);
+        }
+
         $this->assign("username",session('username'));
         return $this->fetch();
     }
@@ -107,7 +137,7 @@ class Index extends Controller
             $this->redirect('/yesterday');
         }else
         {
-            return $this->error("系统故障，数据添加失败，请稍后再试~",null,'',3);
+            return $this->error("系统故障，数据添加失败，请稍后再试或联系你的宝贝儿老公~",null,'',3);
         }
     }
 }

@@ -1,26 +1,26 @@
 <div class="container-fluid menu">
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-2">
-			<a href="index">首页</a>
+		<div class="col-md-1 col-sm-1"></div>
+		<div class="col-md-2 col-sm-2">
+			<a href="index">相伴而行</a>
 		</div>
-		<div class="col-md-2">
-			<a href="yesterday">过去</a>
+		<div class="col-md-2 col-sm-2">
+			<a href="yesterday">幸福回忆</a>
 		</div>
-		<div class="col-md-2">
-			<a href="tomorrow">未来</a>
+		<div class="col-md-2 col-sm-2">
+			<a href="tomorrow">展望未来</a>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-2 col-sm-2">
 			<a href="memorial">纪念日</a>
 		</div>
 		{empty name="username"}
-        	<div class="col-md-1"></div>
-			<div class="col-md-1">
+        	<div class="col-md-1 col-sm-1"></div>
+			<div class="col-md-2 col-sm-2">
 				<a data-toggle="modal" data-target="#myModal">登录</a>
 			</div>
 	    {else/}
-			<div class="col-md-3">
-				<p>欢迎{$username}&nbsp;<a href="{:url('logout')}">注销</a></p>
+			<div class="col-md-3 col-sm-3">
+				<div style="color:black; font-family: 'Microsoft Yahei'; font-size:24px;">欢迎{$username}&nbsp;<a href="{:url('logout')}">注销</a></div>
 			</div>
 	    {/empty}				
 	</div>
@@ -51,7 +51,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="button glow button-rounded button-flat" data-dismiss="modal">取消</button>
-          <a href="ourmemery.html"><button type="button" class="button glow button-rounded button-flat-primary">先看看~~~</button></a>
+          <a href=""><button type="button" class="button glow button-rounded button-flat-primary">先看看~~~</button></a>
         </div>
       </div>
     </div>

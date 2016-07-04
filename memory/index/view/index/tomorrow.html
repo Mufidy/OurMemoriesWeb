@@ -9,9 +9,12 @@
 	<script src="__JS__bootstrap.js"></script>
 	<script src="__JS__ourmemery.js"></script>
 
+	<link rel="stylesheet" href="__CSS__tomorrowStyle.css">
+
 	<script type="text/javascript">
-　　window.onload = showtime;//不要括号//yesterday  we remember,future we expect,memorial days
+　　window.onload = showCountDownTime;//不要括号//yesterday  we remember,future we expect,memorial days
 	</script>
+
 
 	<title>tomorrow we expect</title>
 
@@ -19,7 +22,115 @@
 <body>
 	{include file="public/menu" /}
 	
-	tomorrow
+
+			
+	<div class="cover"></div>
+
+	<!--===== Begin Header =====-->
+	<header>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="logo wow bounceInLeft">
+						<img src="__IMG__tomorrow/Marry.png">
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="logo wow bounceInLeft">
+						<span class="site-logo"></span>
+					</div>
+				</div>
+
+				<div class="col-sm-5">
+					
+				</div>
+
+			</div> <!-- /.row -->
+		</div> <!-- /.container -->
+	</header>
+	<!--===== End Header =====-->
+
+
+	<!--===== Begin Count Down =====-->
+	<section>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xs-12">
+					<!-- 5.3 countdown container -->
+            		<div class="countdown-container" id="lwt-countdown">
+            			<div class="dash days_dash wow zoomIn" data-wow-delay="0.4s">
+            		   	    <div class="digit" id="cdDay3">0</div><div class="digit" id="cdDay2">0</div><div class="digit" id="cdDay1">0</div>
+        			   	    <span class="dash_title">days</span>
+						</div>
+            			<div class="dash hours_dash wow zoomIn" data-wow-delay="0.5s">
+            		   	    <div class="digit" id="cdHour2">0</div><div class="digit" id="cdHour1">0</div>
+        			   	    <span class="dash_title">hours</span>
+						</div>
+            		   	<div class="dash minutes_dash wow zoomIn" data-wow-delay="0.6s">
+            		   	    <div class="digit" id="cdMin2">0</div><div class="digit" id="cdMin1">0</div>
+        			   	    <span class="dash_title">minutes</span>
+						</div>
+						<div class="dash seconds_dash wow zoomIn" data-wow-delay="0.7s">
+            		        <div class="digit" id="cdSec2">0</div><div class="digit" id="cdSec1">0</div>
+        			   	    <span class="dash_title">seconds</span>
+						</div>
+            		</div>
+            		<!-- end countdown container -->
+        		</div>
+        		
+			</div> <!-- /.row -->
+		</div> <!-- /.container -->
+	</section>
+	<!--===== End Count Down =====-->
+
+
+	<!--===== Begin Content =====-->
+	<section id="content">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-6">
+					<div class="content-intro">
+						<h1 class="wow zoomInLeft" data-wow-delay="0.3s"><span class="main-color">Happiness</span> is Coming Soon ...</h1>
+						<p class="wow zoomIn" data-wow-delay="0.5s">海飞和路路打算在相爱7周年（2020年11月7日）时结婚<br/>彼时路路刚刚毕业，海飞已工作一年<br/>
+						哇~~~晒~~~想想就好期待吖~~~~~~~~~~~~</p>
+						<!-- Begin Subscribe Form -
+                        <div id="form">
+                        	<div id="form-subscriber"></div>
+                            <div class="form-container wow bounceInLeft" data-wow-delay="0.5s">
+                                <div class="page-section" id="signup">                                            	
+                                    <form method="post" action="mail.php" id="subscribe_form" class="subscriptionForm subscribe-form">
+                                        <input type="text" id="email" name="email" class="emailfield" placeholder="Enter your email address"/>
+                                        <input type="submit" class="submit" id="submit" value="Subscribe" />
+                                    </form> 
+                                </div> <!-end page section -
+                            </div> <!- End form container -
+                        </div> <!- end Subscribe Form -->
+                       
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<br/>
+					<div class="service-post wow fadeInUp" data-wow-delay="0.5s">
+						<i ><img src="__IMG__tomorrow/future.ico"></i>
+						<h2><a href=""><span class="main-color">Future</span> <span style="color:white">Marriage</span></a></h2>
+						<p>期待中的婚姻，结婚安排，婚后生活等...</p>
+					</div>
+
+					<div class="service-post wow fadeInUp" data-wow-delay="0.7s">
+						<i ><img src="__IMG__tomorrow/todo.ico"></i>
+						<h2><a href=""><span class="main-color">TODO</span> <span style="color:white">List</span></h2></a>
+						<p>目前的待办事项，要在结婚前完成哦</p>
+					</div>
+
+				</div>
+
+			</div> <!-- /.row -->
+		</div> <!-- /.container -->
+	</section>
+	<!--===== End Content =====-->
 
 
 </body>

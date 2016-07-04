@@ -67,13 +67,13 @@ a:active{
 }
 
 .menu{
-	height: 46px;
+	height: 36px;
 	background-color: #8FBCA6;
 	font-family: "Microsoft Yahei";
 }
 
 .menu a{
-	font-size: 32px;	
+	font-size: 24px;	
 	cursor: pointer;
 }
 
