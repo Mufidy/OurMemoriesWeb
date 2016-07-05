@@ -149,6 +149,7 @@ class Index extends Controller
         $insertData['highlight'] = $highlight;
         $insertData['content'] = $content;
         $insertData['togetherDay'] = $togetherDay;
+        $insertData['addTime'] = date("Y-m-d H:i:s");
 
         $result = Db::name('yesterday')->insert($insertData);
         if ($result == 1)
@@ -210,6 +211,7 @@ class Index extends Controller
         $updateData['highlight'] = $highlight;
         $updateData['content'] = $content;
         $updateData['togetherDay'] = $togetherDay;
+        $updateData['updateTime'] = date("Y-m-d H:i:s");
 
         Db::table('yesterday')
         ->where('id', $id)

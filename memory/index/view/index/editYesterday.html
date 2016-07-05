@@ -18,6 +18,7 @@
 	{include file="public/menu" /}
 
   <h1 class="title">编辑海飞与路路的幸福回忆</h1>
+  <div class="addYesterdayTime">{notempty name="$data.addTime"}创建于{$data.addTime}{/notempty}{notempty name="$data.updateTime"}&nbsp;&nbsp;&nbsp;&nbsp;最后更新于{$data.updateTime}{/notempty}</div>
   <br/>
      
   <form action="{:url('updateYesterday')}" name="f" onsubmit="return checkForm()" method="post">    

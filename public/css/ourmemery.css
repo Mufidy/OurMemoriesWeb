@@ -87,7 +87,7 @@ a:active{
 }
 
 
-/*=== for addYesterday.html start ===*/
+/*=== for add/editYesterday.html start ===*/
 .title{
 	font-size: 32px;
 	text-align: center;
@@ -108,10 +108,16 @@ a:active{
 	font-weight:normal
 }
 
+.addYesterdayTime{
+	text-align: center;
+	color:grey;
+	font-size: 10px;
+}
+
 .onSubmitHint{
 	text-align: center;
 	color: red;
 	font-size: 24px;
 	min-height: 46px;
 }
-/*=== for addYesterday.html end ===*/
+/*=== for add/editYesterday.html end ===*/
