@@ -201,7 +201,7 @@ hr {
 	color: #a1a4b8;
 }
 .content .main .year .list ul li.highlight {
-	background-image: url(http://p4.qhimg.com/d/inn/05a63fc5/circle-h.png);
+	background-image: url(/images/log/circle-h.png);
 }
 .cls {
 	zoom: 1;
@@ -256,6 +256,11 @@ hr {
 	left:40px
 }
 
+.content .wrapper:first-child .main .year.close2 .more{
+	opacity:0;
+	height:0!important;
+}
+
 .edit{
 	position: absolute;
 	right: 50px;
@@ -270,5 +275,31 @@ hr {
 
 .edit a:hover{
 	color: #00FFFF;
-	font-family: "Droid Sans";
+	font-family: "MwCuteFont";
+}
+
+.editYesterdayButton{
+	font-size: 10px;
+	visibility:hidden;
+}
+
+.editYesterdayButton a{
+	color:white;
+	font-family: "Microsoft Yahei";
+}
+
+.editYesterdayButton a:hover{
+	color:white;
+	font-family: "Microsoft Yahei";
+}
+
+.deleteFlagS{
+	color:red;
+	font-size: 20px;
+}
+
+.addMoreButton{
+	cursor:pointer;
+	color:#F0F0F0;
+	font-size: 10px;
 }

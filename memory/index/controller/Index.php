@@ -71,9 +71,28 @@ class Index extends Controller
 
         $years = Db::query("select year from yesterday group by year order by year desc");
         foreach ($years as $year) {
-            $yearData = Db::name('yesterday')->where('year', $year['year'])->order('month desc,day desc')->select();
-            $data[$year['year']] = $yearData;
+            $yearData = Db::name('yesterday')->where('year', $year['year'])->where('deleted',0)->order('month desc,day desc')->select();
+
+            //以下为截取内容的函数，缩短内容。。后续可通过ajax加载全部内容。
             
+            for ($i=0; $i < count($yearData); $i++) { 
+                $brPos=strpos($yearData[$i]['content'],'<br>');
+                $conLen=strlen($yearData[$i]['content']);
+                if ($conLen<=80 && !$brPos) {
+                    $yearData[$i]['more']=0;
+                }else{
+                    $yearData[$i]['more']=1;
+                    if ($conLen>80 && !$brPos) {
+                        $yearData[$i]['content']=substr($yearData[$i]['content'], 0, 79);
+                    }elseif ($brPos<80) {
+                        $yearData[$i]['content']=substr($yearData[$i]['content'], 0, $brPos);
+                    }else{
+                        $yearData[$i]['content']=substr($yearData[$i]['content'], 0, 79);
+                    }                
+                }
+            }
+
+            $data[$year['year']] = $yearData;
         }
         //echo $data;
         $this->assign("data",$data);
@@ -139,5 +158,87 @@ class Index extends Controller
         {
             return $this->error("系统故障，数据添加失败，请稍后再试或联系你的宝贝儿老公~",null,'',3);
         }
+    }
+
+    public function editYesterday()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->error("访问隐私数据需要登录哦！","/",'',2);
+        }
+
+        $id = input('get.id/d');
+        $data = Db::name('yesterday')->where('id', $id)->find();
+
+        $data['content'] = str_replace('<br>', PHP_EOL,  $data['content']);
+
+        $this->assign("data",$data);
+        $this->assign("username",session('username'));
+        return $this->fetch();
+    }
+
+    public function updateYesterday()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->error("更新隐私数据也需要登录哦！","/",'',2);
+        }
+
+        $id = input('post.id');
+        $date = input('post.date');
+        $dateArr = explode('-',$date);
+        $year = intval($dateArr[0]);
+        $month = intval($dateArr[1]);
+        $day = intval($dateArr[2]);
+        $title = input('post.title');
+        $highlightStr = input('post.highlight');
+        $highlight = $highlightStr=="highlightYes"?1:0;
+        $content = input('post.content');
+        $content = str_replace(PHP_EOL,'<br>',$content);
+        $togetherDay = input('post.togetherDay');
+        if ($togetherDay == "yes") 
+        {
+            $startdate=strtotime("2014-11-7");
+            $enddate=strtotime($date);
+            $togetherDay=round(($enddate-$startdate)/86400);
+        }
+
+        $updateData['year'] = $year;
+        $updateData['month'] = $month;
+        $updateData['day'] = $day;
+        $updateData['title'] = $title;
+        $updateData['highlight'] = $highlight;
+        $updateData['content'] = $content;
+        $updateData['togetherDay'] = $togetherDay;
+
+        Db::table('yesterday')
+        ->where('id', $id)
+        ->update($updateData);
+
+        return $this->success('更新成功','/yesterday','',1);
+
+    }
+
+    public function deleteYesterday()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->error("删除隐私数据也需要登录哦！","/",'',2);
+        }
+
+        $id = input('post.id/d');
+
+        Db::table('yesterday')
+        ->where('id', $id)
+        ->setField('deleted', 1);
+
+        return "success";
+    }
+
+    public function getMoreContentYesterday()
+    {
+        $id = input('post.id/d');
+        $data = Db::name('yesterday')->where('id', $id)->find();
+        return "{\"content\":\"".$data['content']."\"}";
     }
 }

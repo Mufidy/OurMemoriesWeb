@@ -32,23 +32,23 @@
 
         <div class="list">
           <ul>
-          	{volist name="oneyear" id="onedata"}
-          	{if condition="$onedata.highlight eq 1"}
-            <li class="cls highlight">
-            {else /}
-            <li class="cls">
-            {/if}
+          	{volist name="oneyear" id="onedata"}          	
+            <li {if condition="$onedata.highlight eq 1"} class="cls highlight" {else /} class="cls" {/if} onmouseover="showEditYesterdayButton({$onedata.id});" onmouseout="hideEditYesterdayButton({$onedata.id});">
               <p class="date">{$onedata.month}月{$onedata.day}日</p>
-              <p class="intro">{$onedata.title}</p>
+              <p class="intro">{$onedata.title}
+                <span class="editYesterdayButton" id='edit{$onedata.id}'>&nbsp;&nbsp;<a href="editYesterday?id={$onedata.id}">编辑</a>&nbsp;&nbsp;<a onclick="deleteData({$onedata.id})">删除</a></span><span class="deleteFlagS" id='deleteFlag{$onedata.id}'></span>
+              </p>
               <p class="version">{empty name="$onedata.togetherDay"}&nbsp;{else /}{$onedata.togetherDay}天{/empty}</p>
-              <div class="more">
-                <p>{$onedata.content}</p>
+              <div class="more" id="getMoreContent{$onedata.id}">
+                <p>{$onedata.content}{if condition="$onedata.more eq 1"}...<br/>
+                  <span class="addMoreButton" onclick="getMoreContent({$onedata.id});">[more]</span>{/if}
+                </p>
                 <!--<p><img src="__IMG__time.ico"></p>-->
               </div>
             </li>
    			{/volist}
           </ul>
-        </div>
+        </div><!--end div class="list"-->
       </div>
       {/volist}
 
@@ -64,16 +64,20 @@
 </div>
 
 <script>
-	$(".main .year .list").each(function (e, target) {
-	    var $target=  $(target),
-	        $ul = $target.find("ul");
-	    $target.height($ul.outerHeight()), $ul.css("position", "absolute");
-	}); 
-	$(".main .year>h2>a").click(function (e) {
-	    e.preventDefault();
-	    $(this).parents(".year").toggleClass("close1");
-	});
-	</script>
+/*
+$(".main .year .list").each(function (e, target) {
+    var $target=  $(target),
+        $ul = $target.find("ul");
+    $target.height($ul.outerHeight()), $ul.css("position", "absolute");
+});
+*/
+$(".main .year>h2>a").click(function (e) {
+    e.preventDefault();
+    $(this).parents(".year").toggleClass("close1");
+});
+
+
+</script>
 </body>
 
 </html>

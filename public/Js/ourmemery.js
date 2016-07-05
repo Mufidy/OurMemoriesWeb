@@ -62,3 +62,56 @@ function showCountDownTime(){
 
 	t=setTimeout("showCountDownTime()",1000);
 }
+
+function showEditYesterdayButton(dataId){
+	var editButtonId = "edit"+dataId;
+	document.getElementById(editButtonId).style.visibility = "visible";
+}
+
+function hideEditYesterdayButton(dataId){
+	var editButtonId = "edit"+dataId;
+	document.getElementById(editButtonId).style.visibility = "hidden";
+}
+
+function deleteData(id)
+{
+  var ret = window.confirm("真的要删除这条幸福回忆嘛宝贝儿~\r\n你的老公公好难过滴哦~~");
+  //当点击确定时 返回 true 
+  if(ret){
+      //do something 点确定
+      $.ajax({
+         type: "post",
+         url: "deleteYesterday",
+         data: {id,id},
+         dataType: "text",
+         success: function(data){
+             $("#edit"+id).html("&nbsp;");
+             $("#deleteFlag"+id).html("删除成功");
+
+             setTimeout("deleteList("+id+")", 1500);
+          }
+      });
+  }
+}
+
+function deleteList(id) {
+	$("#edit"+id).parent(".intro").parent(".cls").remove();
+}
+
+function getMoreContent(id){
+	$("#getMoreContent"+id).children("p").children(".addMoreButton").css("cursor","default");
+	$("#getMoreContent"+id).children("p").children(".addMoreButton").text("正在玩命加载中......");
+	$.ajax({
+         type: "post",
+         url: "getMoreContentYesterday",
+         data: {id,id},
+         dataType: "json",
+         success: function(data){
+         	var json=JSON.parse(data);
+            $("#getMoreContent"+id).html(json.content);
+          },
+          error: function(){
+          	alert("哎呀，获取更多内容时出错了~稍等一下吧宝贝儿~\r\n或者联系你的宝贝儿老公嘛~");
+          }
+      });
+}
