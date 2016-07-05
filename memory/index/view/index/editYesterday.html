@@ -66,10 +66,11 @@
       <div class="col-md-5 addcontent">
          <label class="addinput"><input name="togetherDay" type="checkbox" value="yes" {notempty name="$data.togetherDay"} checked="checked" {/notempty}/>&nbsp;&nbsp;同时添加在一起的时间（天数）</label> 
       </div>
-      <br/><br/><br/>
+      <br/><br/>
     </div>
 
-    <br/>
+    <div class="row onSubmitHint" id="onSubmitHint"></div>
+
     <div class="row">
       <div class="col-md-4"></div>
       <!--
@@ -91,18 +92,23 @@
 </body>
 
 <script>
+$("input,textarea").focus(function (e) {
+    $("#onSubmitHint").html("");
+});
+
+
 function checkForm()
 {
   if (document.forms["f"]["date"].value=="") {
-    alert("请输入回忆日期哦宝贝儿~");
+    $("#onSubmitHint").html("请输入回忆日期哦宝贝儿~");
     return false;
   }
   if (document.forms["f"]["title"].value=="") {
-    alert("请输入回忆标题哦宝贝儿~");
+    $("#onSubmitHint").html("请输入回忆标题哦宝贝儿~");
     return false;
   }
   if (document.forms["f"]["content"].value=="") {
-    alert("请输入回忆内容哦宝贝儿~");
+    $("#onSubmitHint").html("请输入回忆内容哦宝贝儿~");
     return false;
   }
   return true;

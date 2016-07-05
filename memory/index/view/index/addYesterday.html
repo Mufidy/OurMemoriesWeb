@@ -68,10 +68,11 @@
       <br/><br/>
     </div>
 
+    <div class="row onSubmitHint" id="onSubmitHint"></div>
+
     <div class="row">
       <div class="col-md-5"></div>
       <div class="col-md-2 addcontent">
-        <br/>
         <input type="submit" value="添加回忆"/>
       </div>
       <br/><br/><br/>
@@ -82,18 +83,23 @@
 </body>
 
 <script>
+$("input,textarea").focus(function (e) {
+    $("#onSubmitHint").html("");
+});
+
+
 function checkForm()
 {
   if (document.forms["f"]["date"].value=="") {
-    alert("请输入回忆日期哦宝贝儿~");
+    $("#onSubmitHint").html("请输入回忆日期哦宝贝儿~");
     return false;
   }
   if (document.forms["f"]["title"].value=="") {
-    alert("请输入回忆标题哦宝贝儿~");
+    $("#onSubmitHint").html("请输入回忆标题哦宝贝儿~");
     return false;
   }
   if (document.forms["f"]["content"].value=="") {
-    alert("请输入回忆内容哦宝贝儿~");
+    $("#onSubmitHint").html("请输入回忆内容哦宝贝儿~");
     return false;
   }
   return true;
