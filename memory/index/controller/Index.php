@@ -37,9 +37,11 @@ class Index extends Controller
 	   	{
 	   		session('uid',$list["id"]);
        		session('username',$username);
+            $this->logAction("登入系统   成功");
 	   		return $this->success($message,null,'',1);
 	   	}else
 	   	{
+            $this->logAction("登入系统   失败",null,$username);
 	   		return $this->error("用户名或密码错误哦",null,'',2);
 	   	}
 
@@ -151,9 +153,10 @@ class Index extends Controller
         $insertData['togetherDay'] = $togetherDay;
         $insertData['addTime'] = date("Y-m-d H:i:s");
 
-        $result = Db::name('yesterday')->insert($insertData);
-        if ($result == 1)
+        $resultID = Db::name('yesterday')->insertGetId($insertData);
+        if ($resultID)
         {
+            $this->logAction("添加幸福回忆",$resultID);
             $this->redirect('/yesterday');
         }else
         {
@@ -216,7 +219,7 @@ class Index extends Controller
         Db::table('yesterday')
         ->where('id', $id)
         ->update($updateData);
-
+        $this->logAction("更新幸福回忆",$id);
         return $this->success('更新成功','/yesterday','',1);
 
     }
@@ -233,7 +236,7 @@ class Index extends Controller
         Db::table('yesterday')
         ->where('id', $id)
         ->setField('deleted', 1);
-
+        $this->logAction("删除幸福回忆",$id);
         return "success";
     }
 
@@ -243,4 +246,70 @@ class Index extends Controller
         $data = Db::name('yesterday')->where('id', $id)->find();
         return "{\"content\":\"".$data['content']."\"}";
     }
+
+    /*====For admin page start====*/
+    public function adminMW()
+    {
+        if (session('isAdmin') == null) 
+        {
+            $this->assign("isAdmin",session('isAdmin'));
+            return $this->fetch();
+        }else
+        {
+            $data = Db::name("history")->order('id desc')->select();
+            $this->assign("isAdmin",session('isAdmin'));
+            $this->assign("data",$data);
+            return $this->fetch();
+        }
+    }
+
+    public function adminLogin()
+    {
+        $adminInfo = input('post.adminInfo');
+        $adminObj = json_decode($adminInfo,true);
+        $adminName = $adminObj['adminName'];
+        $adminPassword = $adminObj['adminPassword'];
+        $r = Db::name('admin')->where('adminName',$adminName)->where('adminPassword',$adminPassword)->find();
+        if ($r != null) {
+            session('isAdmin','yes');
+            return "Success";
+        }else{
+            return "Fail";
+        }
+    }
+
+    public function adminLogout()
+    {
+        session('isAdmin',null);
+        $this->redirect('/adminMW');
+    }
+
+    public function logAction($action,$cID=null,$userName=null)
+    {
+        $insertData["time"] = date("Y-m-d H:i:s");
+        $insertData["action"] = $action;
+        $insertData["contentID"] = $cID;
+        $insertData["fromIP"] = $this->getIp();
+        if ($userName == null) {
+            $userName = session('username');
+        }
+        $insertData["userName"] = $userName;
+        Db::name('history')->insert($insertData);
+    }
+
+    function getIP() {
+        $ip = $_SERVER['REMOTE_ADDR'];
+        if (isset($_SERVER['HTTP_CLIENT_IP']) && preg_match('/^([0-9]{1,3}\.){3}[0-9]{1,3}$/', $_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif(isset($_SERVER['HTTP_X_FORWARDED_FOR']) AND preg_match_all('#\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}#s', $_SERVER['HTTP_X_FORWARDED_FOR'], $matches)) {
+            foreach ($matches[0] AS $xip) {
+                if (!preg_match('#^(10|172\.16|192\.168)\.#', $xip)) {
+                    $ip = $xip;
+                    break;
+                }
+            }
+        }
+        return $ip;
+    }
+    /*====For admin page end====*/
 }

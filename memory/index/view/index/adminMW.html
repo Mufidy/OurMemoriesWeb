@@ -1,0 +1,96 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="__CSS__bootstrap.css" type="text/css" />
+ 	<script src="__JS__jquery-1.11.1.min.js"></script>
+	<title>后台管理</title>
+
+</head>
+
+<style type="text/css">
+body{
+	background-color: #ECF0F1;
+	text-align: center;
+}
+.tableMenu{
+	font-family: "Microsoft Yahei";
+	font-size: 18px;
+}
+a{
+	font-family: "Microsoft Yahei";
+	font-size: 16px;
+}
+a:link,a:visited{
+ text-decoration:none;
+}
+</style>
+
+<script type="text/javascript">
+function submitLogin()
+{
+	var adminName = document.forms["f"]["adminName"].value;
+	var adminPassword = document.forms["f"]["adminPassword"].value;
+	var adminInfo = "{\"adminName\":\""+adminName+"\",\"adminPassword\":\""+adminPassword+"\"}";
+  	$.ajax({
+     	type: "post",
+     	url: "adminLogin",
+     	data: {adminInfo,adminInfo},
+     	dataType: "text",
+     	success: function(data){
+     		if(data=="\"Success\""){
+     			$("#loginHint").html("登录成功");
+     			setTimeout("window.location.reload()", 1000);
+     		}else{
+     			$("#loginHint").html("管理员用户名或密码错误");
+     		}
+      	},
+      	error: function(){
+      		alert("error");
+      	}
+  	});
+}
+
+$("input").focus(function (e) {
+    $("#loginHint").html("nihao");
+});
+
+</script>
+
+<body>
+	<h1>欢迎使用Our Memories后台管理系统</h1>
+	{empty name="isAdmin"}
+	<form name="f">
+		管理员账号:&nbsp;<input type="text" name="adminName" placeholder="输入管理员用户名"><br/><br/>
+		管理员密码:&nbsp;<input type="password" name="adminPassword" placeholder="输入管理员密码"><br/><br/>
+		<div style="color:red;" id="loginHint">&nbsp;</div>
+		<input type="button" onclick="submitLogin();" value="登录后台管理系统">
+	</form>
+	{else /}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 col-sm-4"></div>
+			<div class="col-md-2 col-sm-2">
+				<a href="javascript:window.location.reload();">刷新</a>
+			</div>
+			<div class="col-md-2 col-sm-2">
+				<a href="adminLogout">退出系统</a>
+			</div>
+			<div class="col-md-4 col-sm-4"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-sm-4 tableMenu">时间</div>
+			<div class="col-md-4 col-sm-4 tableMenu">操作</div>
+			<div class="col-md-4 col-sm-4 tableMenu">用户</div>
+		</div>
+		{volist name="data" id="history"}
+		<div class="row">
+			<div class="col-md-4 col-sm-4">{$history.time}</div>
+			<div class="col-md-4 col-sm-4">{$history.action}{notempty name="$history.contentID"}；&nbsp;操作的ID是{$history.contentID}{/notempty}</div>
+			<div class="col-md-4 col-sm-4">{$history.userName}{notempty name="$history.fromIP"}；&nbsp;来自IP：{$history.fromIP}{/notempty}</div>	
+		</div>
+		{/volist}
+	</div>
+	{/empty}
+</body>
+
+</html>
