@@ -27,25 +27,25 @@
   <div class="container addyesterday">
     
     <div class="row">
-      <div class="col-md-4 addlabel">日期:&nbsp;</div>
-      <div class="col-md-1"></div>
-      <div class="col-md-5 addcontent">
+      <div class="col-md-4 col-sm-4 addlabel">日期:&nbsp;</div>
+      <div class="col-md-1 col-sm-1"></div>
+      <div class="col-md-5 col-sm-5 addcontent">
         <input type="text" data-beatpicker="true" data-beatpicker-module="clear" name="date" placeholder="yyyy-mm-dd" class="addinput" value="{$data.year}-{$data.month}-{$data.day}" />
       </div>
       <br/><br/><br/>
     </div>
 
     <div class="row">
-      <div class="col-md-4 addlabel">标题:&nbsp;</div>
-      <div class="col-md-1"></div>
-      <div class="col-md-5 addcontent"><input type="text" name="title" placeholder="请输入回忆标题" class="addinput" value="{$data.title}"></div>
+      <div class="col-md-4 col-sm-4 addlabel">标题:&nbsp;</div>
+      <div class="col-md-1 col-sm-1"></div>
+      <div class="col-md-5 col-sm-5 addcontent"><input type="text" name="title" placeholder="请输入回忆标题" class="addinput" value="{$data.title}"></div>
       <br/><br/><br/>
     </div>
 
     <div class="row">
-      <div class="col-md-4 addlabel">是否高亮:&nbsp;</div>
-      <div class="col-md-1"></div>
-      <div class="col-md-5 addcontent">
+      <div class="col-md-4 col-sm-4 addlabel">是否高亮:&nbsp;</div>
+      <div class="col-md-1 col-sm-1"></div>
+      <div class="col-md-5 col-sm-5 addcontent">
         <input type="radio" name="highlight" value="highlightYes" {eq name='$data.highlight' value='1' }checked="checked"{/eq}>是</input>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="radio" name="highlight" value="highlightNo" {eq name='$data.highlight' value='0' }checked="checked"{/eq}>否</input>
@@ -54,18 +54,18 @@
     </div>
 
     <div class="row">
-      <div class="col-md-4 addlabel">回忆内容:&nbsp;</div>
-      <div class="col-md-1"></div>
-      <div class="col-md-5 addcontent">
+      <div class="col-md-4 col-sm-4 addlabel">回忆内容:&nbsp;</div>
+      <div class="col-md-1 col-sm-1"></div>
+      <div class="col-md-5 col-sm-5 addcontent">
          <textarea rows="3" cols="30" name="content" placeholder="请输入回忆内容（支持回车换行）" class="addinput">{$data.content}</textarea>
       </div>
       <br/><br/><br/><br/><br/><br/>
     </div>
 
     <div class="row">
-      <div class="col-md-4 addlabel">添加图片:&nbsp;</div>
-      <div class="col-md-1"></div>
-      <div class="col-md-5 addcontent">
+      <div class="col-md-4 col-sm-4 addlabel">添加图片:&nbsp;</div>
+      <div class="col-md-1 col-sm-1"></div>
+      <div class="col-md-5 col-sm-5 addcontent">
          <input id="imageUpload" type="file" accept="image/*"/>
          <img id="imagePreview" src="{$data.image}">
          <textarea id="imageBase64" name="image" style="display:none;">{$data.image}</textarea>
@@ -74,9 +74,9 @@
     </div>
 
     <div class="row">
-      <div class="col-md-4 addlabel">备注:&nbsp;</div>
-      <div class="col-md-1"></div>
-      <div class="col-md-5 addcontent">
+      <div class="col-md-4 col-sm-4 addlabel">备注:&nbsp;</div>
+      <div class="col-md-1 col-sm-1"></div>
+      <div class="col-md-5 col-sm-5 addcontent">
          <label class="addinput"><input name="togetherDay" type="checkbox" value="yes" {notempty name="$data.togetherDay"} checked="checked" {/notempty}/>&nbsp;&nbsp;同时添加在一起的时间（天数）</label> 
       </div>
       <br/><br/>
@@ -85,16 +85,16 @@
     <div class="row onSubmitHint" id="onSubmitHint"></div>
 
     <div class="row">
-      <div class="col-md-4"></div>
+      <div class="col-md-4 col-sm-4"></div>
       <!--
       <div class="col-md-2 addcontent">
         <input type="button" onclick="deleteData({$data.id});" value="删除回忆"/>
       </div>
       -->
-      <div class="col-md-2 addcontent">
+      <div class="col-md-2 col-sm-2 addcontent">
         <input type="submit" value="更新回忆"/>
       </div>
-      <div class="col-md-2 addcontent">
+      <div class="col-md-2 col-sm-2 addcontent">
         <input type="button" onclick="cancel();" value="取消编辑"/>
       </div>
       <br/><br/><br/>

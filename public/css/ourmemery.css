@@ -22,7 +22,7 @@
 
 body{
 	background-color: #ECF0F1;
-	
+	padding-top: 40px;
 }
 
 body a{
@@ -67,7 +67,9 @@ a:active{
 }
 
 .menu{
-	height: 36px;
+	border:0;
+	min-height: 40px;
+	height: 40px;
 	background-color: #8FBCA6;
 	font-family: "Microsoft Yahei";
 }
