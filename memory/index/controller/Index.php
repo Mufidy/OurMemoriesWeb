@@ -4,6 +4,7 @@ namespace app\index\controller;
 use think\Controller;
 use think\Db;
 use think\Session;
+use think\Input;
 
 class Index extends Controller
 {
@@ -137,6 +138,7 @@ class Index extends Controller
         $content = input('post.content');
         $content = str_replace(PHP_EOL,'<br>',$content);
         $togetherDay = input('post.togetherDay');
+        $image = input('post.image');
         if ($togetherDay == "yes") 
         {
             $startdate=strtotime("2014-11-7");
@@ -152,6 +154,7 @@ class Index extends Controller
         $insertData['content'] = $content;
         $insertData['togetherDay'] = $togetherDay;
         $insertData['addTime'] = date("Y-m-d H:i:s");
+        $insertData['image'] = $image;
 
         $resultID = Db::name('yesterday')->insertGetId($insertData);
         if ($resultID)
@@ -199,6 +202,7 @@ class Index extends Controller
         $highlight = $highlightStr=="highlightYes"?1:0;
         $content = input('post.content');
         $content = str_replace(PHP_EOL,'<br>',$content);
+        $image = input('post.image');
         $togetherDay = input('post.togetherDay');
         if ($togetherDay == "yes") 
         {
@@ -215,6 +219,7 @@ class Index extends Controller
         $updateData['content'] = $content;
         $updateData['togetherDay'] = $togetherDay;
         $updateData['updateTime'] = date("Y-m-d H:i:s");
+        $updateData['image'] = $image;
 
         Db::table('yesterday')
         ->where('id', $id)

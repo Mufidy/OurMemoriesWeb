@@ -1,6 +1,5 @@
 <div class="container-fluid menu">
-	<div class="row">
-		<div class="col-md-1 col-sm-1"></div>
+	<div class="row" style="text-align:center;">
 		<div class="col-md-2 col-sm-2">
 			<a href="index">相伴而行</a>
 		</div>
@@ -14,13 +13,16 @@
 			<a href="memorial">纪念日</a>
 		</div>
 		{empty name="username"}
-        	<div class="col-md-1 col-sm-1"></div>
+        	<div class="col-md-2 col-sm-2"></div>
 			<div class="col-md-2 col-sm-2">
 				<a data-toggle="modal" data-target="#myModal">登录</a>
 			</div>
 	    {else/}
-			<div class="col-md-3 col-sm-3">
-				<div style="color:black; font-family: 'Microsoft Yahei'; font-size:24px;">欢迎我宝贝儿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{:url('logout')}">注销</a></div>
+			<div class="col-md-2 col-sm-2">
+				<div style="color:black; font-family: 'Microsoft Yahei'; font-size:24px;">欢迎我宝贝儿</div>
+			</div>
+			<div class="col-md-2 col-sm-2">
+				<div style="color:black; font-family: 'Microsoft Yahei'; font-size:24px;"><a href="{:url('logout')}">注销</a></div>
 			</div>
 	    {/empty}				
 	</div>

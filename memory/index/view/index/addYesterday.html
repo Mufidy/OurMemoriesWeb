@@ -9,6 +9,7 @@
 	<script src="__JS__bootstrap.js"></script>
   <script src="__JS__ourmemery.js"></script>
 	<script src="__JS__BeatPicker.js"></script>
+  <script src="__JS__lrz.bundle.js"></script>
 
 	<title>添加幸福回忆</title>
 
@@ -20,7 +21,7 @@
   <h1 class="title">添加海飞与路路的幸福回忆</h1>
   <br/>
      
-  <form action="{:url('insertIntoYesterday')}" name="f" onsubmit="return checkForm()" method="post">    
+  <form action="{:url('insertIntoYesterday')}" enctype="multipart/form-data"  name="f" onsubmit="return checkForm()" method="post">    
   
   <div class="container addyesterday">
     
@@ -57,6 +58,17 @@
          <textarea rows="3" cols="30" name="content" placeholder="请输入回忆内容（支持回车换行）" class="addinput"></textarea>
       </div>
       <br/><br/><br/><br/><br/><br/>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 addlabel">添加图片:&nbsp;</div>
+      <div class="col-md-1"></div>
+      <div class="col-md-5 addcontent">
+         <input id="imageUpload" type="file" accept="image/*"/>
+         <img id="imagePreview" src="">
+         <textarea id="imageBase64" name="image" style="display:none;"></textarea>
+      </div>
+      <br/><br/><br/>
     </div>
 
     <div class="row">
@@ -102,8 +114,26 @@ function checkForm()
     $("#onSubmitHint").html("请输入回忆内容哦宝贝儿~");
     return false;
   }
+  $("#imageUpload").remove();
   return true;
 }
+
+document.querySelector('#imageUpload').addEventListener('change', function () {
+    lrz(this.files[0],{width: 150,height: 150})
+        .then(function (rst) {
+            $("#imagePreview").attr('src',rst.base64);
+            $("#imageBase64").text(rst.base64);
+        })
+        .catch(function (err) {
+            $("#onSubmitHint").html("啊哦，好像图片压缩失败了呢~快联系你哒宝贝儿老公~");
+            // 处理失败会执行
+        })
+        .always(function () {
+            // 不管是成功失败，都会执行
+        });
+});
+
+
 </script>
 
 </html>

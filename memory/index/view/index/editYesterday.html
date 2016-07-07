@@ -9,6 +9,7 @@
 	<script src="__JS__bootstrap.js"></script>
   <script src="__JS__ourmemery.js"></script>
 	<script src="__JS__BeatPicker.js"></script>
+  <script src="__JS__lrz.bundle.js"></script>
 
 	<title>编辑幸福回忆</title>
 
@@ -62,6 +63,17 @@
     </div>
 
     <div class="row">
+      <div class="col-md-4 addlabel">添加图片:&nbsp;</div>
+      <div class="col-md-1"></div>
+      <div class="col-md-5 addcontent">
+         <input id="imageUpload" type="file" accept="image/*"/>
+         <img id="imagePreview" src="{$data.image}">
+         <textarea id="imageBase64" name="image" style="display:none;">{$data.image}</textarea>
+      </div>
+      <br/><br/><br/>
+    </div>
+
+    <div class="row">
       <div class="col-md-4 addlabel">备注:&nbsp;</div>
       <div class="col-md-1"></div>
       <div class="col-md-5 addcontent">
@@ -112,6 +124,7 @@ function checkForm()
     $("#onSubmitHint").html("请输入回忆内容哦宝贝儿~");
     return false;
   }
+  $("#imageUpload").remove();
   return true;
 }
 
@@ -120,16 +133,20 @@ function cancel()
   history.go(-1);
 }
 
-/*
-function deleteData(id)
-{
-  var ret = window.confirm("真的要删除这条幸福回忆嘛宝贝儿?");
-  //当点击确定时 返回 true 
-  if(ret){
-      //do something 点确定
-      window.location.href="deleteYesterday?id="+id;
-  }
-}*/
+document.querySelector('#imageUpload').addEventListener('change', function () {
+    lrz(this.files[0],{width: 150,height: 150})
+        .then(function (rst) {
+            $("#imagePreview").attr('src',rst.base64);
+            $("#imageBase64").text(rst.base64);
+        })
+        .catch(function (err) {
+            $("#onSubmitHint").html("啊哦，好像图片压缩失败了呢~快联系你哒宝贝儿老公~");
+            // 处理失败会执行
+        })
+        .always(function () {
+            // 不管是成功失败，都会执行
+        });
+});
 
 </script>
 

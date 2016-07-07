@@ -39,11 +39,11 @@
                 <span class="editYesterdayButton" id='edit{$onedata.id}'>&nbsp;&nbsp;<a href="editYesterday?id={$onedata.id}">编辑</a>&nbsp;&nbsp;<a onclick="deleteData({$onedata.id})">删除</a></span><span class="deleteFlagS" id='deleteFlag{$onedata.id}'></span>
               </p>
               <p class="version">{empty name="$onedata.togetherDay"}&nbsp;{else /}{$onedata.togetherDay}天{/empty}</p>
-              <div class="more" id="getMoreContent{$onedata.id}">
-                <p>{$onedata.content}{if condition="$onedata.more eq 1"}...<br/>
+              <div class="more">
+                <p id="getMoreContent{$onedata.id}">{$onedata.content}{if condition="$onedata.more eq 1"}...<br/>
                   <span class="addMoreButton" onclick="getMoreContent({$onedata.id});">[more]</span>{/if}
                 </p>
-                <!--<p><img src="__IMG__time.ico"></p>-->
+                {notempty name="$onedata.image"}<p><img src="{$onedata.image}"></p>{/notempty}
               </div>
             </li>
    			{/volist}
