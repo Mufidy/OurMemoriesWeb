@@ -1,33 +1,21 @@
 <nav class="navbar navbar-default navbar-fixed-top menu" role="navigation">
-	<div class="container-fluid ">
-		<div class="row" style="text-align:center;padding-top:2px;">
-			<div class="col-md-2 col-sm-2">
-				<a href="index">相伴而行</a>
-			</div>
-			<div class="col-md-2 col-sm-2">
-				<a href="yesterday">幸福回忆</a>
-			</div>
-			<div class="col-md-2 col-sm-2">
-				<a href="tomorrow">展望未来</a>
-			</div>
-			<div class="col-md-2 col-sm-2">
-				<a href="memorial">纪念日</a>
-			</div>
-			{empty name="username"}
-	        	<div class="col-md-2 col-sm-2"></div>
-				<div class="col-md-2 col-sm-2">
-					<a data-toggle="modal" data-target="#myModal">登录</a>
-				</div>
-		    {else/}
-				<div class="col-md-2 col-sm-2">
-					<div style="color:black; font-family: 'Microsoft Yahei'; font-size:24px;">欢迎我宝贝儿</div>
-				</div>
-				<div class="col-md-2 col-sm-2">
-					<div style="color:black; font-family: 'Microsoft Yahei'; font-size:24px;"><a href="{:url('logout')}">注销</a></div>
-				</div>
-		    {/empty}				
-		</div>
-	</div>
+	<div class="navbar-header">
+      <a class="navbar-brand" href="index">相伴而行</a>
+   </div>
+   <div>
+      <ul class="nav navbar-nav navbar-left">
+         <li ><a href="yesterday">幸福回忆</a></li>
+         <li><a href="tomorrow">展望未来</a></li>
+         <li><a href="memorial">纪念日</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {empty name="username"}
+		<li><a data-toggle="modal" data-target="#myModal">登录</a></li>
+	    {else/}
+	    <li><a>欢迎我宝贝儿</a></li>
+	    <li><a href="{:url('logout')}">注销&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+		{/empty}			
+      </ul>
 </nav>
 
 <!--Launch modal start-->
