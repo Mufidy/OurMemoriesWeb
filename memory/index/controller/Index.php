@@ -25,10 +25,16 @@ class Index extends Controller
         return $this->fetch();
     }
 
+    public function showLogin()
+    {
+        return $this->fetch();
+    }
+
     public function login()
     {
 	    $username = input('post.username');
 	    $password = input('post.password');
+        $to = input('post.to');
 	   	
 	   	$list = Db::name('user')->where('username', $username)->find();
 	   	
@@ -39,7 +45,7 @@ class Index extends Controller
 	   		session('uid',$list["id"]);
        		session('username',$username);
             $this->logAction("登入系统   成功");
-	   		return $this->success($message,null,'',1);
+	   		return $this->success($message,$to,'',1);
 	   	}else
 	   	{
             $this->logAction("登入系统   失败",null,$username);
@@ -59,7 +65,7 @@ class Index extends Controller
     {
         if(!($this->checkLogin()))
         {
-            return $this->error("访问隐私数据需要登录哦！","/",'',2);
+            return $this->redirect('/showLogin?to=memorial');
         }
         $memorialDayData = Db::name('memorial')->where('deleted',0)->order('time')->select();
         $this->assign("data",$memorialDayData);
@@ -71,7 +77,7 @@ class Index extends Controller
     {   
         if(!($this->checkLogin()))
         {
-            return $this->error("访问隐私数据需要登录哦！","/",'',2);
+            return $this->redirect('/showLogin?to=yesterday');
         }
 
         $years = Db::query("select year from yesterday group by year order by year desc");
@@ -109,7 +115,7 @@ class Index extends Controller
     {
         if(!($this->checkLogin()))
         {
-            return $this->error("访问隐私数据需要登录哦！","/",'',2);
+            return $this->redirect('/showLogin?to=tomorrow');
         }
 
     	$this->assign("username",session('username'));
@@ -120,7 +126,7 @@ class Index extends Controller
     {
         if(!($this->checkLogin()))
         {
-            return $this->error("访问隐私数据需要登录哦！","/",'',2);
+            return $this->redirect('/showLogin?to=yesterday');
         }
 
         $this->assign("username",session('username'));
@@ -129,6 +135,11 @@ class Index extends Controller
 
     public function insertIntoYesterday()
     {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=yesterday');
+        }
+
         $date = input('post.date');
         $dateArr = explode('-',$date);
         $year = intval($dateArr[0]);
@@ -173,7 +184,7 @@ class Index extends Controller
     {
         if(!($this->checkLogin()))
         {
-            return $this->error("访问隐私数据需要登录哦！","/",'',2);
+            return $this->redirect('/showLogin?to=yesterday');
         }
 
         $id = input('get.id/d');
@@ -190,7 +201,7 @@ class Index extends Controller
     {
         if(!($this->checkLogin()))
         {
-            return $this->error("更新隐私数据也需要登录哦！","/",'',2);
+            return $this->redirect('/showLogin?to=yesterday');
         }
 
         $id = input('post.id');
@@ -235,7 +246,7 @@ class Index extends Controller
     {
         if(!($this->checkLogin()))
         {
-            return $this->error("删除隐私数据也需要登录哦！","/",'',2);
+            return $this->redirect('/showLogin?to=yesterday');
         }
 
         $id = input('post.id/d');

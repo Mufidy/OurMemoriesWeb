@@ -18,6 +18,8 @@
  \think\Route::rule('editYesterday','index/index/editYesterday');
  \think\Route::rule('deleteYesterday','index/index/deleteYesterday');
  \think\Route::rule('getMoreContentYesterday','index/index/getMoreContentYesterday');
+ \think\Route::rule('showLogin','index/index/showLogin');
+ \think\Route::rule('login','index/index/login');
  \think\Route::rule('adminMW','index/index/adminMW');
  \think\Route::rule('adminLogin','index/index/adminLogin');
  \think\Route::rule('adminLogout','index/index/adminLogout');
