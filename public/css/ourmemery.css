@@ -123,3 +123,26 @@ a:active{
 	min-height: 46px;
 }
 /*=== for add/editYesterday.html end ===*/
+
+/*=== for memorial.html start ===*/
+.memorialModal{
+	color: black;
+}
+.memorialTitle{
+	font-family: "Microsoft YaHei","苹方","黑体";
+	font-size: 16px;
+	text-align: center;
+}
+
+.memorialTime{
+	font-family: "楷体";
+	font-size: 14px;
+	color: grey;
+	text-align: right;
+}
+
+.memorialContent{
+	font-family: "Microsoft YaHei","苹方","黑体";
+	font-size: 15px;
+}
+/*=== for memorial.html end ===*/

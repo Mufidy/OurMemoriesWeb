@@ -1,26 +1,106 @@
 <html>
 <head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="__CSS__bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="__CSS__ourmemery.css" type="text/css" />
-    <link rel="stylesheet" href="__CSS__studybar.css" type="text/css" />
-    <link rel="stylesheet" href="__CSS__buttons.css" type="text/css" />
-	<script src="__JS__jquery-1.11.1.min.js"></script>
-	<script src="__JS__bootstrap.js"></script>
-	<script src="__JS__ourmemery.js"></script>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="__CSS__bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__ourmemery.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__studybar.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__buttons.css" type="text/css" />
+	<link rel="stylesheet" href="__CSS__templatemo_misc.css">
+	<link rel="stylesheet" href="__CSS__templatemo_style.css">
 
-	<script type="text/javascript">
-　　window.onload = showtime;//不要括号//yesterday  we remember,future we expect,memorial days
-	</script>
+  <script src="__JS__jquery-1.11.1.min.js"></script>
+  <script src="__JS__bootstrap.js"></script>
+  <script src="__JS__ourmemery.js"></script>
+	<script src="__JS__templatemo_custom.js"></script>
 
-	<title>memorial days</title>
+  <script type="text/javascript">
+　　
+  </script>
+
+  <title>memorial days</title>
 
 </head>
 <body>
-	{include file="public/menu" /}
-	
-	<h1>纪念日</h1>
+  {include file="public/menu" /}
+  <!-- memorial start -->
+  <div class="content homepage">
+    <div class="container">
+      <div class="row templatemorow">
 
+        {volist name="data" id="da" mod="9"}
+        <div class="hex col-sm-6 templatemo-hex-top1 {eq name='mod' value='5'}hex-offset{/eq}">
+          <div>
+            <div class="hexagon hexagon2 gallery-item">
+          	  <div class="hexagon-in1">
+                <div class="hexagon-in2" style="background-image: url({$da.image});"}>
+                  <div class="overlay">
+                    <a data-toggle="modal" data-target="#MemorialDayModal{$da.id}"><img src="__IMG__magnifying.png"></a>                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/volist}
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="templatemo_loadmore">
+          <button class="gallery_more" id="button" onClick="">Add Memoiral Day</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- memorial end -->
+
+  <!-- modal(more content) start-->
+  {volist name="data" id="da"}
+  <div class="modal fade memorialModal" id="MemorialDayModal{$da.id}" tabindex="-1" role="dialog" aria-labelledby="MemorialDayModalLabel{$da.id}" aria-hidden="true">
+  	<div class="modal-dialog">
+  		<div class="modal-content">
+  			<div class="modal-header">
+  				<button type="button" class="close" data-dismiss="modal">
+  					<span aria-hidden="true">&times;</span>
+  					<span class="sr-only">Close</span>
+  				</button>
+  				<h3 class="modal-title" id="MemorialDayModalLabel{$da.id}">Our Memorial Days</h3>
+  			</div>
+  			<div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4 col-sm-12">
+                <img src="{$da.image}">
+              </div>
+              <div class="col-md-7 col-md-offset-1 col-sm-12">
+                <div class="memorialTitle">
+                  {$da.title}
+                </div>
+                <div class="memorialTime">
+                  纪念日期：{$da.time}
+                </div>
+                <div class="memorialContent">
+                  {$da.content}
+                </div>                
+              </div>
+            </div>            
+          </div>
+  			</div>
+  			<div class="modal-footer">
+  				<a href="">
+  					<button type="button" class="button glow button-rounded button-flat-caution">删除</button>
+  				</a>
+  				<a href="">
+  					<button type="button" class="button glow button-rounded button-flat-primary">编辑</button>
+  				</a>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+  {/volist}
+  <!-- modal(more content) start-->
 
 </body>
 </html>

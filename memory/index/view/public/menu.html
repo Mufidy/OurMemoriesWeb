@@ -10,10 +10,22 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {empty name="username"}
-		<li><a data-toggle="modal" data-target="#myModal">登录</a></li>
+		<li><a data-toggle="modal" data-target="#myModal">登录&nbsp;&nbsp;&nbsp;</a></li>
 	    {else/}
-	    <li><a>欢迎我宝贝儿</a></li>
-	    <li><a href="{:url('logout')}">注销&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+	    <li class="dropdown">
+            <a href="javascript:void();" class="dropdown-toggle" data-toggle="dropdown">
+               欢迎我宝贝儿
+               <!--<b class="caret"></b>-->
+            </a>
+            <ul class="dropdown-menu">
+               <li><a href="javascript:void();">爱你哦宝贝儿</a></li>
+               <li><a href="javascript:void();">Mua</a></li>
+               <li><a href="javascript:void();">MuaMua</a></li>
+               <li><a href="javascript:void();">MuaMuaMua</a></li>
+            </ul>
+        </li>
+
+	    <li><a href="{:url('logout')}">注销&nbsp;&nbsp;&nbsp;</a></li>
 		{/empty}			
       </ul>
 </nav>

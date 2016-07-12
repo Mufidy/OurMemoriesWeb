@@ -61,7 +61,9 @@ class Index extends Controller
         {
             return $this->error("访问隐私数据需要登录哦！","/",'',2);
         }
-    	$this->assign("username",session('username'));
+        $memorialDayData = Db::name('memorial')->where('deleted',0)->order('time')->select();
+        $this->assign("data",$memorialDayData);
+        $this->assign("username",session('username'));
     	return $this->fetch();
     }
 
