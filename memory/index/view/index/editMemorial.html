@@ -1,0 +1,137 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="__CSS__bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="__CSS__ourmemery.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__studybar.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__BeatPicker.css" type="text/css" />
+	<script src="__JS__jquery-1.11.1.min.js"></script>
+	<script src="__JS__bootstrap.js"></script>
+  <script src="__JS__ourmemery.js"></script>
+	<script src="__JS__BeatPicker.js"></script>
+  <script src="__JS__lrz.bundle.js"></script>
+
+	<title>编辑纪念日</title>
+
+</head>
+
+<body>
+	{include file="public/menu" /}
+
+  <h1 class="title">编辑海飞与路路的纪念日</h1>
+  <div class="addYesterdayTime">{notempty name="$data.createTime"}创建于{$data.createTime}{/notempty}{notempty name="$data.updateTime"}&nbsp;&nbsp;&nbsp;&nbsp;最后更新于{$data.updateTime}{/notempty}</div>
+  <br/>
+     
+  <form action="{:url('updateMemorial')}" name="f" onsubmit="return checkForm()" method="post">    
+  <input type="text" name="id" value="{$data.id}" style="display:none;" />
+  <div class="container addyesterday">
+    
+    <div class="row">
+      <div class="col-md-4 col-sm-4 addlabel">纪念日期:&nbsp;</div>
+      <div class="col-md-1 col-sm-1"></div>
+      <div class="col-md-5 col-sm-5 addcontent">
+        <input type="text" data-beatpicker="true" data-beatpicker-module="clear" name="date" placeholder="yyyy-mm-dd" class="addinput" value="{$data.time}" />
+      </div>
+      <br/><br/><br/>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 col-sm-4 addlabel">纪念标题:&nbsp;</div>
+      <div class="col-md-1 col-sm-1"></div>
+      <div class="col-md-5 col-sm-5 addcontent"><input type="text" name="title" placeholder="请输入纪念标题" class="addinput" value="{$data.title}"></div>
+      <br/><br/><br/>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 col-sm-4 addlabel">纪念内容:&nbsp;</div>
+      <div class="col-md-1 col-sm-1"></div>
+      <div class="col-md-5 col-sm-5 addcontent">
+         <textarea rows="3" cols="30" name="content" placeholder="请输入纪念内容（支持回车换行）" class="addinput">{$data.content}</textarea>
+      </div>
+      <br/><br/><br/><br/><br/><br/>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 col-sm-4 addlabel">更新图片:&nbsp;</div>
+      <div class="col-md-1 col-sm-1"></div>
+      <div class="col-md-5 col-sm-5 addcontent">
+         <input id="imageUpload" type="file" accept="image/*"/>
+         <img id="imagePreview" src="{$data.image}">
+         <textarea id="imageBase64" name="image" style="display:none;">{$data.image}</textarea>
+      </div>
+      <br/><br/><br/>
+    </div>
+
+    <div class="row onSubmitHint" id="onSubmitHint"></div>
+
+    <div class="row">
+      <div class="col-md-4 col-sm-4"></div>
+      <!--
+      <div class="col-md-2 addcontent">
+        <input type="button" onclick="deleteData({$data.id});" value="删除回忆"/>
+      </div>
+      -->
+      <div class="col-md-2 col-sm-2 addcontent">
+        <input type="submit" value="更新回忆"/>
+      </div>
+      <div class="col-md-2 col-sm-2 addcontent">
+        <input type="button" onclick="cancel();" value="取消编辑"/>
+      </div>
+      <br/><br/><br/>
+    </div>
+
+  </div>
+  </form>
+</body>
+
+<script>
+$("input,textarea").focus(function (e) {
+    $("#onSubmitHint").html("");
+});
+
+
+function checkForm()
+{
+  if (document.forms["f"]["date"].value=="") {
+    $("#onSubmitHint").html("请输入纪念日期哦宝贝儿~");
+    return false;
+  }
+  if (document.forms["f"]["title"].value=="") {
+    $("#onSubmitHint").html("请输入纪念标题哦宝贝儿~");
+    return false;
+  }
+  if (document.forms["f"]["content"].value=="") {
+    $("#onSubmitHint").html("请输入纪念内容哦宝贝儿~");
+    return false;
+  }
+  if (document.forms["f"]["image"].value=="") {
+    $("#onSubmitHint").html("必须要上传纪念日的图片哦宝贝儿~");
+    return false;
+  }
+  $("#imageUpload").remove();
+  return true;
+}
+
+function cancel()
+{
+  history.go(-1);
+}
+
+document.querySelector('#imageUpload').addEventListener('change', function () {
+    lrz(this.files[0],{width: 150,height: 150})
+        .then(function (rst) {
+            $("#imagePreview").attr('src',rst.base64);
+            $("#imageBase64").text(rst.base64);
+        })
+        .catch(function (err) {
+            $("#onSubmitHint").html("啊哦，好像图片压缩失败了呢~快联系你哒宝贝儿老公~");
+            // 处理失败会执行
+        })
+        .always(function () {
+            // 不管是成功失败，都会执行
+        });
+});
+
+</script>
+
+</html>

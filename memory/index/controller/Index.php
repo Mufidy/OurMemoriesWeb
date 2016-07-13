@@ -61,18 +61,6 @@ class Index extends Controller
 	    $this->redirect('/');
     }
 
-    public function memorial()
-    {
-        if(!($this->checkLogin()))
-        {
-            return $this->redirect('/showLogin?to=memorial');
-        }
-        $memorialDayData = Db::name('memorial')->where('deleted',0)->order('time')->select();
-        $this->assign("data",$memorialDayData);
-        $this->assign("username",session('username'));
-    	return $this->fetch();
-    }
-
     public function yesterday()
     {   
         if(!($this->checkLogin()))
@@ -231,7 +219,7 @@ class Index extends Controller
         $updateData['highlight'] = $highlight;
         $updateData['content'] = $content;
         $updateData['togetherDay'] = $togetherDay;
-        $updateData['updateTime'] = date("Y-m-d H:i:s");
+        //$updateData['updateTime'] = date("Y-m-d H:i:s");//database update automatically
         $updateData['image'] = $image;
 
         Db::table('yesterday')
@@ -264,6 +252,120 @@ class Index extends Controller
         $data = Db::name('yesterday')->where('id', $id)->find();
         return "{\"content\":\"".$data['content']."\"}";
     }
+
+    public function memorial()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=memorial');
+        }
+        $memorialDayData = Db::name('memorial')->where('deleted',0)->order('time')->select();
+        $this->assign("data",$memorialDayData);
+        $this->assign("username",session('username'));
+        return $this->fetch();
+    }
+
+    public function addMemorial()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=memorial');
+        }
+
+        $this->assign("username",session('username'));
+        return $this->fetch();
+    }
+
+    public function editMemorial()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=memorial');
+        }
+
+        $id = input('get.id/d');
+        $data = Db::name('memorial')->where('id', $id)->find();
+
+        $data['content'] = str_replace('<br>', PHP_EOL,  $data['content']);
+
+        $this->assign("data",$data);
+        $this->assign("username",session('username'));
+        return $this->fetch();
+    }
+
+    public function updateMemorial()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=memorial');
+        }
+
+        $id = input('post.id');
+        $date = input('post.date');
+        $title = input('post.title');
+        $content = input('post.content');
+        $content = str_replace(PHP_EOL,'<br>',$content);
+        $image = input('post.image');
+
+        $updateData['time'] = $date;
+        $updateData['title'] = $title;
+        $updateData['content'] = $content;
+        $updateData['image'] = $image;
+
+        Db::table('memorial')
+        ->where('id', $id)
+        ->update($updateData);
+        $this->logAction("更新纪念日",$id);
+        return $this->success('更新成功','/memorial','',1);
+
+    }
+
+    public function insertIntoMemorial()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=memorial');
+        }
+
+        $date = input('post.date');
+        $title = input('post.title');
+        $content = input('post.content');
+        $content = str_replace(PHP_EOL,'<br>',$content);
+        $image = input('post.image');
+        
+        $insertData['time'] = $date;
+        $insertData['title'] = $title;
+        $insertData['content'] = $content;
+        $insertData['createTime'] = date("Y-m-d H:i:s");
+        $insertData['image'] = $image;
+
+        $resultID = Db::name('memorial')->insertGetId($insertData);
+        if ($resultID)
+        {
+            $this->logAction("添加纪念日",$resultID);
+            $this->redirect('/memorial');
+        }else
+        {
+            return $this->error("系统故障，数据添加失败，请稍后再试或联系你的宝贝儿老公~",null,'',3);
+        }
+    }
+
+    public function deleteMemorial()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=memorial');
+        }
+
+        $id = input('post.id/d');
+
+        Db::table('memorial')
+        ->where('id', $id)
+        ->setField('deleted', 1);
+        $this->logAction("删除纪念日",$id);
+        return "success";
+    }
+
 
     /*====For admin page start====*/
     public function adminMW()
