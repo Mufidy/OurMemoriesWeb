@@ -99,17 +99,6 @@ class Index extends Controller
     	return $this->fetch();
     }
 
-    public function tomorrow()
-    {
-        if(!($this->checkLogin()))
-        {
-            return $this->redirect('/showLogin?to=tomorrow');
-        }
-
-    	$this->assign("username",session('username'));
-    	return $this->fetch();
-    }
-
     public function addYesterday()
     {
         if(!($this->checkLogin()))
@@ -265,6 +254,31 @@ class Index extends Controller
         return $this->fetch();
     }
 
+
+    public function tomorrow()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=tomorrow');
+        }
+
+        $this->assign("username",session('username'));
+        return $this->fetch();
+    }
+
+
+    public function todoList()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=tomorrow');
+        }
+
+        $this->assign("username",session('username'));
+        return $this->fetch();
+    }
+
+    /*====For memorial page start====*/
     public function addMemorial()
     {
         if(!($this->checkLogin()))
@@ -365,6 +379,7 @@ class Index extends Controller
         $this->logAction("删除纪念日",$id);
         return "success";
     }
+    /*====For memorial page end====*/
 
 
     /*====For admin page start====*/

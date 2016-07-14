@@ -11,7 +11,6 @@
 //路由注册文件
 
 
-\think\Route::rule('tomorrow','index/index/tomorrow');
 \think\Route::rule('yesterday','index/index/yesterday');
 \think\Route::rule('addYesterday','index/index/addYesterday');
 \think\Route::rule('editYesterday','index/index/editYesterday');
@@ -21,6 +20,8 @@
 \think\Route::rule('addMemorial','index/index/addMemorial');
 \think\Route::rule('editMemorial','index/index/editMemorial');
 \think\Route::rule('deleteMemorial','index/index/deleteMemorial');
+\think\Route::rule('tomorrow','index/index/tomorrow');
+\think\Route::rule('todoList','index/index/todoList');
 \think\Route::rule('showLogin','index/index/showLogin');
 \think\Route::rule('login','index/index/login');
 \think\Route::rule('adminMW','index/index/adminMW');

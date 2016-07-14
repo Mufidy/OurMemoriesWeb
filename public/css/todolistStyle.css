@@ -1,0 +1,48 @@
+.leftMenu{
+	min-height: 600px;
+}
+
+.todoContainer{
+	background-color: white;
+	min-height: 600px;
+}
+
+.menuTab{
+	font-size: 15px;
+	font-family: "Microsoft Yahei";
+}
+
+.todoTypeTabCont{
+	font-size: 18px;
+}
+
+.todoTypeList{
+	color: black;
+	cursor: pointer;
+	width: 100%;
+	margin-top: 12px;
+}
+
+.todoTypeList:hover{
+	background-color: white;
+}
+
+.todoProjCount{
+	font-size: 14px;
+	color: grey;
+	margin-right: 8px;
+	float: right;
+	display: none;
+}
+
+.oneTodoItem{
+	width: 100%;
+	margin-top: 6px;
+	font-size: 16px;
+}
+
+.oneTodoItemDdl{
+	font-size: 12px;
+	float: right;
+	margin-right: 4px;
+}

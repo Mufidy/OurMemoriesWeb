@@ -29,17 +29,17 @@ body a{
 	color: black;
 }
 
-a:link{
+.threeLogo a:link{
 	text-decoration:none;
 }
-a:visited{
+.threeLogo a:visited{
 	text-decoration:none;
 }
-a:hover{
+.threeLogo a:hover{
 	text-decoration:none;
 	font-family: "MwCuteFont";
 }
-a:active{
+.threeLogo a:active{
 	text-decoration:none;
 }
 

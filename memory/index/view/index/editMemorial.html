@@ -118,7 +118,7 @@ function cancel()
 }
 
 document.querySelector('#imageUpload').addEventListener('change', function () {
-    lrz(this.files[0],{width: 150,height: 150})
+    lrz(this.files[0],{width: 220,height: 350})
         .then(function (rst) {
             $("#imagePreview").attr('src',rst.base64);
             $("#imageBase64").text(rst.base64);

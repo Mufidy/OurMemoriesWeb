@@ -407,6 +407,7 @@ footer {
 ================================================================== */
 a, a:hover, a:focus {
 	color: #c14f66;
+	text-decoration:none;
 }
 .main-color {
 	color: #c14f66;

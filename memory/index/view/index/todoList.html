@@ -1,0 +1,123 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="__CSS__bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__ourmemery.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__studybar.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__buttons.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__todolistStyle.css" type="text/css" />
+  <script src="__JS__jquery-1.11.1.min.js"></script>
+  <script src="__JS__bootstrap.js"></script>
+  <script src="__JS__todolist.js"></script>
+
+  <title>Todo List</title>
+
+</head>
+<body>
+  {include file="public/menu" /}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-md-offset-1 leftMenu">
+        <h3>Todo List</h3>
+        <div class="menuTab">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#todoProj" data-toggle="tab">项目 <i class="icon-list"></i></a>
+            </li>
+            <li>
+              <a href="#todoDone" data-toggle="tab">已完成 <i class="icon-ok"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-content todoTypeTabCont">
+          <div class="tab-pane fade in active" id="todoProj">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#a8c8e4;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              全部 <i class="icon-list-ol"></i>
+              <span class="todoProjCount">0</span>
+            </div>
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#ccff99;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              美食 <i class="icon-food"></i>
+              <span class="todoProjCount">0</span>
+            </div>    
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#fb886e;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              酒店 <i class="icon-home"></i>
+              <span class="todoProjCount">0</span>
+            </div>
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#74e8d3;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              购物 <i class="icon-shopping-cart"></i>
+              <span class="todoProjCount">0</span>
+            </div>
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#e2a8e4;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              旅行 <i class="icon-plane"></i>
+              <span class="todoProjCount">0</span>
+            </div>
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#FFCC99;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              生活 <i class="icon-gift"></i>
+              <span class="todoProjCount">0</span>
+            </div>
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#9966FF;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              杂项 <i class="icon-magic"></i>
+              <span class="todoProjCount">0</span>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="todoDone">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#a8c8e4;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              全部 <i class="icon-list-ol"></i>（已完成）
+              <span class="todoProjCount">0</span>
+            </div>
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#ccff99;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              美食 <i class="icon-food"></i>（已完成）
+              <span class="todoProjCount">0</span>
+            </div> 
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#fb886e;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              酒店 <i class="icon-home"></i>（已完成）
+              <span class="todoProjCount">0</span>
+            </div>
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#74e8d3;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              购物 <i class="icon-shopping-cart"></i>（已完成）
+              <span class="todoProjCount">0</span>
+            </div>
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#e2a8e4;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              旅行 <i class="icon-plane"></i> （已完成）
+              <span class="todoProjCount">0</span>
+            </div>
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#FFCC99;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              生活 <i class="icon-gift"></i>（已完成）
+              <span class="todoProjCount">0</span>
+            </div>
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+              <span style="color:#9966FF;">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
+              杂项 <i class="icon-magic"></i>（已完成）
+              <span class="todoProjCount">0</span>
+            </div>       
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7 todoContainer">
+        <h3>全部</h3>
+        <div class="oneTodoItem">
+          <i class="icon-circle-blank" style="color:#e2a8e4;"></i> 去厦门旅游
+          <div class="oneTodoItemDdl">2017-06-30</div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
