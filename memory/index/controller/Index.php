@@ -274,6 +274,32 @@ class Index extends Controller
             return $this->redirect('/showLogin?to=tomorrow');
         }
 
+        $typeCoRe = Db::query("select t.type,count(*) as count from todolist l,todoType t 
+            where l.type=t.id and l.done=0 and l.deleted=0 group by l.type");
+        $typeCount=array("food"=>0,"hotel"=>0,"shop"=>0,"travel"=>0,"life"=>0,"others"=>0);
+        $countAll = 0;
+        foreach ($typeCoRe as $key) {
+            $typeCount[$key["type"]]=$key["count"];
+            $countAll+=$key["count"];
+        }
+        $typeCount["all"]=$countAll;
+
+        $typeCoReDone = Db::query("select t.type,count(*) as count from todolist l,todoType t 
+            where l.type=t.id and l.done=1 and l.deleted=0 group by l.type");
+        $typeCountDone=array("food"=>0,"hotel"=>0,"shop"=>0,"travel"=>0,"life"=>0,"others"=>0);
+        $countAllDone = 0;
+        foreach ($typeCoReDone as $key) {
+            $typeCountDone[$key["type"]]=$key["count"];
+            $countAllDone+=$key["count"];
+        }
+        $typeCountDone["all"]=$countAllDone;
+
+        $todoItems = Db::query("select l.id,l.title,l.content,l.deadline,t.type from todolist l,todoType t
+            where l.done=0 and l.deleted=0 and l.type=t.id");
+
+        $this->assign("typeCount",$typeCount);
+        $this->assign("todoItems",$todoItems);
+        $this->assign("typeCountDone",$typeCountDone);
         $this->assign("username",session('username'));
         return $this->fetch();
     }
