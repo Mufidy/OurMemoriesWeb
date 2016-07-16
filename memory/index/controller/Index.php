@@ -294,14 +294,106 @@ class Index extends Controller
         }
         $typeCountDone["all"]=$countAllDone;
 
-        $todoItems = Db::query("select l.id,l.title,l.content,l.deadline,t.type from todolist l,todoType t
-            where l.done=0 and l.deleted=0 and l.type=t.id");
-
+        $todoItems = Db::query("select l.id,l.title,l.content,l.deadline,t.type,l.type as typeId from todolist l,todoType t
+            where l.done=0 and l.deleted=0 and l.type=t.id order by l.deadline");
+        $todoItemsDone = Db::query("select l.id,l.title,l.content,l.deadline,t.type,l.type as typeId from todolist l,todoType t
+            where l.done=1 and l.deleted=0 and l.type=t.id order by l.deadline");
         $this->assign("typeCount",$typeCount);
         $this->assign("todoItems",$todoItems);
         $this->assign("typeCountDone",$typeCountDone);
+        $this->assign("todoItemsDone",$todoItemsDone);
         $this->assign("username",session('username'));
         return $this->fetch();
+    }
+
+    public function addTodoItem()
+    {
+        if(!($this->checkLogin()))
+        {
+            return "Error. Not login.";
+        }
+        $dataInfo = input('post.data');
+        $data = json_decode($dataInfo,true);
+        $insertData["title"] = $data['title'];
+        $insertData["deadline"] = $data['deadline'];
+        $insertData["type"] = $data['type'];
+        $data['content'] = str_replace(PHP_EOL,"<br>",$data['content']);
+        $insertData["content"] = $data['content'];
+        $resultID = Db::name('todolist')->insertGetId($insertData);
+        if ($resultID) {
+            return $resultID;
+        }else{
+            return "ERROR";
+        }
+    }
+
+    public function updateTodoItem()
+    {
+        if(!($this->checkLogin()))
+        {
+            return "Error. Not login.";
+        }
+        $dataInfo = input('post.data');
+        $data = json_decode($dataInfo,true);
+        $id = $data['id'];
+        $updateData["title"] = $data['title'];
+        $updateData["deadline"] = $data['deadline'];
+        $updateData["type"] = $data['type'];
+        $data['content'] = str_replace(PHP_EOL,"<br>",$data['content']);
+        $updateData["content"] = $data['content'];
+        $result = Db::table('todolist')
+        ->where('id', $id)
+        ->update($updateData);
+        if ($result) {
+            return "Success";
+        }else{
+            return "ERROR";
+        }
+    }
+
+    public function todoListMarkAsCompleted()
+    {
+        if(!($this->checkLogin()))
+        {
+            return "Error. Not login.";
+        }
+        $id = input('post.id/d');
+        $result = Db::name('todolist')->where('id',$id)->setField('done', 1);
+        if ($result) {
+            return "Success";
+        }else{
+            return "Error";
+        }
+    }
+
+    public function todoListMarkAsUnCompleted()
+    {
+        if(!($this->checkLogin()))
+        {
+            return "Error. Not login.";
+        }
+        $id = input('post.id/d');
+        $result = Db::name('todolist')->where('id',$id)->setField('done', 0);
+        if ($result) {
+            return "Success";
+        }else{
+            return "Error";
+        }
+    }
+
+    public function deleteTodoItem()
+    {
+        if(!($this->checkLogin()))
+        {
+            return "Error. Not login.";
+        }
+        $id = input('post.id/d');
+        $result = Db::name('todolist')->where('id',$id)->setField('deleted', 1);
+        if ($result) {
+            return "Success";
+        }else{
+            return "Error";
+        }
     }
 
     /*====For memorial page start====*/

@@ -22,6 +22,11 @@
 \think\Route::rule('deleteMemorial','index/index/deleteMemorial');
 \think\Route::rule('tomorrow','index/index/tomorrow');
 \think\Route::rule('todoList','index/index/todoList');
+\think\Route::rule('addTodoItem','index/index/addTodoItem');
+\think\Route::rule('updateTodoItem','index/index/updateTodoItem');
+\think\Route::rule('todoListMarkAsCompleted','index/index/todoListMarkAsCompleted');
+\think\Route::rule('todoListMarkAsUnCompleted','index/index/todoListMarkAsUnCompleted');
+\think\Route::rule('deleteTodoItem','index/index/deleteTodoItem');
 \think\Route::rule('showLogin','index/index/showLogin');
 \think\Route::rule('login','index/index/login');
 \think\Route::rule('adminMW','index/index/adminMW');

@@ -256,7 +256,8 @@ BeatPicker.prototype = {
         this._inputParentNode.append(elem);
     },
     _createIcon: function () {
-        this.dateInputNode.add(this._dateInputToNode).css("background-image", "url('" + this.view.iconImage + "')")
+        //this.dateInputNode.add(this._dateInputToNode).css("background-image", "url('" + this.view.iconImage + "')")
+        //comment for no background image
     },
     _createNavBar: function (header) {
         var self = this;

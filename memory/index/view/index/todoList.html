@@ -25,83 +25,83 @@
         <div class="menuTab">
           <ul class="nav nav-tabs">
             <li class="active">
-              <a href="#todoProj" data-toggle="tab">项目 <i class="icon-list"></i></a>
+              <a href="#todoProj" data-toggle="tab" onclick="showAllItems()">项目 <i class="icon-list"></i></a>
             </li>
             <li>
-              <a href="#todoDone" data-toggle="tab">已完成 <i class="icon-ok"></i></a>
+              <a href="#todoDone" data-toggle="tab" onclick="showAllDoneItems()">已完成 <i class="icon-ok"></i></a>
             </li>
           </ul>
         </div>
         <div class="tab-content todoTypeTabCont">
           <div class="tab-pane fade in active" id="todoProj">
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showTypeList(0)">
               <span class="allType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               全部 <i class="icon-list-ol"></i>
               <span class="todoProjCount">{$typeCount['all']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showTypeList(1)">
               <span class="foodType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               美食 <i class="icon-food"></i>
               <span class="todoProjCount">{$typeCount['food']}</span>
             </div>    
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showTypeList(2)">
               <span class="hotelType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               酒店 <i class="icon-home"></i>
               <span class="todoProjCount">{$typeCount['hotel']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showTypeList(3)">
               <span class="shopType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               购物 <i class="icon-shopping-cart"></i>
               <span class="todoProjCount">{$typeCount['shop']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showTypeList(4)">
               <span class="travelType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               旅行 <i class="icon-plane"></i>
               <span class="todoProjCount">{$typeCount['travel']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showTypeList(5)">
               <span class="lifeType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               生活 <i class="icon-gift"></i>
               <span class="todoProjCount">{$typeCount['life']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);"  onclick="showTypeList(6)">
               <span class="othersType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               杂项 <i class="icon-magic"></i>
               <span class="todoProjCount">{$typeCount['others']}</span>
             </div>
           </div>
           <div class="tab-pane fade" id="todoDone">
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(0)">
               <span class="allType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               全部 <i class="icon-list-ol"></i>（已完成）
               <span class="todoProjCount">{$typeCountDone['all']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(1)">
               <span class="foodType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               美食 <i class="icon-food"></i>（已完成）
               <span class="todoProjCount">{$typeCountDone['food']}</span>
             </div> 
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(2)">
               <span class="hotelType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               酒店 <i class="icon-home"></i>（已完成）
               <span class="todoProjCount">{$typeCountDone['hotel']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(3)">
               <span class="shopType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               购物 <i class="icon-shopping-cart"></i>（已完成）
               <span class="todoProjCount">{$typeCountDone['shop']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(4)">
               <span class="travelType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               旅行 <i class="icon-plane"></i> （已完成）
               <span class="todoProjCount">{$typeCountDone['travel']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(5)">
               <span class="lifeType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               生活 <i class="icon-gift"></i>（已完成）
               <span class="todoProjCount">{$typeCountDone['life']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);">
+            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(6)">
               <span class="othersType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               杂项 <i class="icon-magic"></i>（已完成）
               <span class="todoProjCount">{$typeCountDone['others']}</span>
@@ -110,18 +110,34 @@
         </div>
       </div>
       <div class="col-md-7 todoContainer">
-        <h3>全部</h3>
-        {volist name="todoItems" id="item"}
-        <div class="oneTodoItem">
-          <i class="icon-circle-blank {$item.type}Type"></i>
-          <span class="oneTodoItemTitle" onclick="toggleContent(this);">{$item.title}</span>
-          <div class="oneTodoItemDdl">截止日期：{$item.deadline}</div>
-          <div class="oneTodoItemContent"">
-            {$item.content}<br/>
-            <button class="button button-pill button-tiny {$item.type}Type">标记为完成</button>
+        <h3 id="typeTitle">全部</h3>
+        <div id="todoLists">
+          {volist name="todoItems" id="item"}
+          <div class="oneTodoItem" id="oneTodoItem{$item.id}">
+            <i class="icon-circle-blank {$item.type}Type" onclick="toggleContent(this);"></i>
+            <span class="oneTodoItemTitle" onclick="toggleContent(this);">{$item.title}</span>
+            <div class="oneTodoItemDdl">截止日期：{$item.deadline}</div>
+            <div class="oneTodoItemContent"><span class="oneTodoItemContentText">{$item.content}</span><br/>
+              <button class="button button-pill button-tiny {$item.type}Type" onclick="markAsCompleted(this,{$item.id});">标记为完成</button>
+              <button class="button button-pill button-tiny {$item.type}Type" onclick="editTodoItem(this,{$item.id},{$item.typeId});">修改</button>
+              <button class="button button-pill button-tiny" style="color:red" onclick="deleteTodoItem(this,{$item.id});">删除</button>
+            </div>
           </div>
+          {/volist}
         </div>
-        {/volist}
+        <div id="todoListsDone" style="display:none;">
+          {volist name="todoItemsDone" id="item"}
+          <div class="oneTodoItem">
+            <i class="icon-ok {$item.type}Type"></i>
+            <span class="oneTodoItemTitle" onclick="toggleContent(this);">{$item.title}</span>
+            <div class="oneTodoItemDdl">截止日期：{$item.deadline}</div>
+            <div class="oneTodoItemContent">
+              {$item.content}<br/>
+              <button class="button button-pill button-tiny {$item.type}Type" onclick="markAsUnCompleted(this,{$item.id});">标记为未完成</button>
+            </div>
+          </div>
+          {/volist}
+        </div>
         <hr>
         <div class="addTodoItem"> <i class="icon-plus addTodoItemIcon" onclick="showAddTodoItemBody()">&nbsp;&nbsp;&nbsp;&nbsp;添加待办事项</i>
           <div class="container-fluid addTodoItemBody">
@@ -135,7 +151,7 @@
               <div class="row addTodoBodyWithBlank">
                 <div class="col-md-4 col-sm-4 addItemLabel">截止日期：</div>
                 <div class="col-md-8 col-sm-8">
-                  <input type="text" data-beatpicker="true" data-beatpicker-module="clear" name="deadline" placeholder="yyyy-mm-dd" class="addItemInput" />        
+                  <input type="text" data-beatpicker="true" data-beatpicker-module="clear" name="deadline" placeholder="请输入截止日期" class="addItemInput">
                 </div>
               </div>
               <div class="row addTodoBodyWithBlank">
@@ -172,6 +188,56 @@
           </div>
         </div>
 
+        <div class="editTodoItem"> <i class="icon-edit editTodoItemIcon">&nbsp;&nbsp;&nbsp;&nbsp;编辑待办事项</i>
+          <div class="container-fluid">
+            <form name="editF">
+              <div class="row">
+                <div class="col-md-4 col-sm-4 addItemLabel">事项标题：</div>
+                <div class="col-md-8 col-sm-8">
+                  <input type="text" name="id" style="display:none;">
+                  <input type="text" name="title" placeholder="请输入事项标题" class="addItemInput">
+                </div>
+              </div>
+              <div class="row addTodoBodyWithBlank">
+                <div class="col-md-4 col-sm-4 addItemLabel">截止日期：</div>
+                <div class="col-md-8 col-sm-8">
+                  <input type="text" data-beatpicker="true" data-beatpicker-module="clear" name="deadline" placeholder="请输入截止日期" class="addItemInput">
+                </div>
+              </div>
+              <div class="row addTodoBodyWithBlank">
+                <div class="col-md-4 col-sm-4 addItemLabel">事项类别：</div>
+                <div class="col-md-8 col-sm-8">
+                  <select class="addItemInput" id="editType">
+                    <option value="">&lt;请选择事项类别&gt;</option>
+                    <option value="1">美食</option>
+                    <option value="2">酒店</option>
+                    <option value="3">购物</option>
+                    <option value="4">旅行</option>
+                    <option value="5">生活</option>
+                    <option value="6">杂项</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row addTodoBodyWithBlank">
+                <div class="col-md-4 col-sm-4 addItemLabel">事项内容：</div>
+                <div class="col-md-8 col-sm-8">
+                  <textarea name="content" class="addItemInput" placeholder="请输入事项内容（可不填）"></textarea>
+                </div>
+              </div>
+            </form>
+            <div class="submitHint" id="submitHintEdit"></div>
+            <div class="row addTodoBodyWithBlank">
+              <div class="col-md-4 col-sm-4"></div>
+              <div class="col-md-3 col-sm-3">
+                <button class="button button-primary button-rounded button-small" onclick="updateTodoItem()">确认修改</button>
+              </div>
+              <div class="col-md-3 col-sm-3">
+                <button class="button button-border button-primary button-rounded button-small" onclick="clearEditFormAndHide()">取消</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -181,9 +247,11 @@
 <script>
 $("input,textarea").focus(function (e) {
   $("#submitHint").html("");
+  $("#submitHintEdit").html("");
 });
 $("#type").change(function(){
   $("#submitHint").html("");
+  $("#submitHintEdit").html("");
 });
 </script>
 </html>
