@@ -3,7 +3,6 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="__CSS__bootstrap.css" type="text/css" />
   <link rel="stylesheet" href="__CSS__ourmemery.css" type="text/css" />
-  <link rel="stylesheet" href="__CSS__studybar.css" type="text/css" />
   <link rel="stylesheet" href="__CSS__BeatPicker.css" type="text/css" />
   <link rel="stylesheet" href="__CSS__buttons.css" type="text/css" />
   <link rel="stylesheet" href="__CSS__font-awesome.min.css" type="text/css" />
@@ -120,7 +119,7 @@
             <div class="oneTodoItemContent"><span class="oneTodoItemContentText">{$item.content}</span><br/>
               <button class="button button-pill button-tiny {$item.type}Type" onclick="markAsCompleted(this,{$item.id});">标记为完成</button>
               <button class="button button-pill button-tiny {$item.type}Type" onclick="editTodoItem(this,{$item.id},{$item.typeId});">修改</button>
-              <button class="button button-pill button-tiny" style="color:red" onclick="deleteTodoItem(this,{$item.id});">删除</button>
+              <button class="button button-pill button-tiny" style="color:red" onclick="deleteTodoItem(this,{$item.id});"><i class="icon-trash"></i></button>    
             </div>
           </div>
           {/volist}

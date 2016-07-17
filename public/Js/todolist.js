@@ -65,7 +65,7 @@ function addTodoItem(){
 			            <div class="oneTodoItemContent"><span class="oneTodoItemContentText">'+content+'</span><br/>\
 			              <button class="button button-pill button-tiny '+typeStr[type]+'Type" onclick="markAsCompleted(this,'+itemId+');">标记为完成</button>\
 			              <button class="button button-pill button-tiny '+typeStr[type]+'Type" onclick="editTodoItem(this,'+itemId+','+type+');">修改</button>\
-			              <button class="button button-pill button-tiny" style="color:red" onclick="deleteTodoItem(this,'+itemId+');">删除</button>\
+			              <button class="button button-pill button-tiny" style="color:red" onclick="deleteTodoItem(this,'+itemId+');"><i class="icon-trash"></i></button>\
 			            </div>\
 			          </div>'
 	            	$("#todoLists").append(toAppendHtml);

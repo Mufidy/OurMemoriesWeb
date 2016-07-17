@@ -27,6 +27,7 @@
 \think\Route::rule('todoListMarkAsCompleted','index/index/todoListMarkAsCompleted');
 \think\Route::rule('todoListMarkAsUnCompleted','index/index/todoListMarkAsUnCompleted');
 \think\Route::rule('deleteTodoItem','index/index/deleteTodoItem');
+\think\Route::rule('futureMarriage','index/index/futureMarriage');
 \think\Route::rule('showLogin','index/index/showLogin');
 \think\Route::rule('login','index/index/login');
 \think\Route::rule('adminMW','index/index/adminMW');

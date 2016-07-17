@@ -396,6 +396,18 @@ class Index extends Controller
         }
     }
 
+    public function futureMarriage()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=tomorrow');
+        }
+
+        $this->assign("username",session('username'));
+        return $this->fetch();
+    }
+
+
     /*====For memorial page start====*/
     public function addMemorial()
     {
