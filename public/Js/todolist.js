@@ -58,10 +58,16 @@ function addTodoItem(){
 	            	document.forms["f"]["content"].value="";
 	            	$("#type").val("");
 	            	hideAddTodoItemBody();
-	            	var toAppendHtml = "<div class=\"oneTodoItem\"><i class=\"icon-circle-blank "+typeStr[type]+"Type\"></i><span class=\"oneTodoItemTitle\""
-	            	+" onclick=\"toggleContent(this);\"> "+title+"</span><div class=\"oneTodoItemDdl\">截止日期："+deadline+"</div>"
-	            	+"<div class=\"oneTodoItemContent\">"+content+"<br/><button class=\"button button-pill button-tiny "+typeStr[type]+"Type\">标记为完成"
-	            	+"</button></div></div>";
+	            	var toAppendHtml = '<div class="oneTodoItem" id="oneTodoItem'+itemId+'">\
+			            <i class="icon-circle-blank '+typeStr[type]+'Type" onclick="toggleContent(this);"></i>\
+			            <span class="oneTodoItemTitle" onclick="toggleContent(this);">'+title+'</span>\
+			            <div class="oneTodoItemDdl">截止日期：'+deadline+'</div>\
+			            <div class="oneTodoItemContent"><span class="oneTodoItemContentText">'+content+'</span><br/>\
+			              <button class="button button-pill button-tiny '+typeStr[type]+'Type" onclick="markAsCompleted(this,'+itemId+');">标记为完成</button>\
+			              <button class="button button-pill button-tiny '+typeStr[type]+'Type" onclick="editTodoItem(this,'+itemId+','+type+');">修改</button>\
+			              <button class="button button-pill button-tiny" style="color:red" onclick="deleteTodoItem(this,'+itemId+');">删除</button>\
+			            </div>\
+			          </div>'
 	            	$("#todoLists").append(toAppendHtml);
 	            	showAllItems();
 	            }
