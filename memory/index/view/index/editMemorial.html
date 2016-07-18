@@ -3,6 +3,8 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="__CSS__bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="__CSS__ourmemery.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__buttons.css" type="text/css" />
   <link rel="stylesheet" href="__CSS__BeatPicker.css" type="text/css" />
 	<script src="__JS__jquery-1.11.1.min.js"></script>
 	<script src="__JS__bootstrap.js"></script>
@@ -71,10 +73,12 @@
       </div>
       -->
       <div class="col-md-2 col-sm-2 addcontent">
-        <input type="submit" value="更新回忆"/>
+        <input type="submit" class="button button-rounded button-raised button-primary" value="更新回忆"/>
       </div>
-      <div class="col-md-2 col-sm-2 addcontent">
-        <input type="button" onclick="cancel();" value="取消编辑"/>
+      <div class="col-md-2 col-sm-2">
+        <button type="button" class="button button-border button-rounded button-primary" onclick="cancel();">
+          <i class="icon-undo"></i> 返回
+        </button>
       </div>
       <br/><br/><br/>
     </div>

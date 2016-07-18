@@ -4,6 +4,7 @@
 	<link rel="stylesheet" href="__CSS__bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="__CSS__ourmemery.css" type="text/css" />
   <link rel="stylesheet" href="__CSS__buttons.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__font-awesome.min.css" type="text/css" />
   <link rel="stylesheet" href="__CSS__yesterdayStyle.css" type="text/css" />
 	<script src="__JS__jquery-1.11.1.min.js"></script>
 	<script src="__JS__bootstrap.js"></script>
@@ -35,7 +36,7 @@
             <li {if condition="$onedata.highlight eq 1"} class="cls highlight" {else /} class="cls" {/if} onmouseover="showEditYesterdayButton({$onedata.id});" onmouseout="hideEditYesterdayButton({$onedata.id});">
               <p class="date">{$onedata.month}月{$onedata.day}日</p>
               <p class="intro">{$onedata.title}
-                <span class="editYesterdayButton" id='edit{$onedata.id}'>&nbsp;&nbsp;<a href="editYesterday?id={$onedata.id}">编辑</a>&nbsp;&nbsp;<a onclick="deleteData({$onedata.id})">删除</a></span><span class="deleteFlagS" id='deleteFlag{$onedata.id}'></span>
+                <span class="editYesterdayButton" id='edit{$onedata.id}'>&nbsp;&nbsp;<a href="editYesterday?id={$onedata.id}" title="编辑"><i class="icon-edit"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="deleteData({$onedata.id})" title="删除"><i class="icon-trash"></i></a></span><span class="deleteFlagS" id='deleteFlag{$onedata.id}'></span>
               </p>
               <p class="version">{empty name="$onedata.togetherDay"}&nbsp;{else /}{$onedata.togetherDay}天{/empty}</p>
               <div class="more">

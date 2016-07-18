@@ -313,11 +313,12 @@ class Index extends Controller
             return "Error. Not login.";
         }
         $dataInfo = input('post.data');
+        $dataInfo = str_replace("\n","<br>",$dataInfo);//这边一定要先处理换行符，否则无法解析json。另；textarea中的换行是\n，使用PHP_EOL会出错
         $data = json_decode($dataInfo,true);
         $insertData["title"] = $data['title'];
         $insertData["deadline"] = $data['deadline'];
         $insertData["type"] = $data['type'];
-        $data['content'] = str_replace(PHP_EOL,"<br>",$data['content']);
+        //$data['content'] = str_replace(PHP_EOL,"<br>",$data['content']);//already replace
         $insertData["content"] = $data['content'];
         $resultID = Db::name('todolist')->insertGetId($insertData);
         if ($resultID) {
@@ -334,21 +335,25 @@ class Index extends Controller
             return "Error. Not login.";
         }
         $dataInfo = input('post.data');
+        $dataInfo = str_replace("\n","<br>",$dataInfo);//这边一定要先处理换行符，否则无法解析json。另；textarea中的换行是\n，使用PHP_EOL会出错
         $data = json_decode($dataInfo,true);
         $id = $data['id'];
         $updateData["title"] = $data['title'];
         $updateData["deadline"] = $data['deadline'];
         $updateData["type"] = $data['type'];
-        $data['content'] = str_replace(PHP_EOL,"<br>",$data['content']);
+        //$data['content'] = str_replace(PHP_EOL,"<br>",$data['content']);
         $updateData["content"] = $data['content'];
-        $result = Db::table('todolist')
-        ->where('id', $id)
-        ->update($updateData);
-        if ($result) {
-            return "Success";
-        }else{
-            return "ERROR";
+        if ($id>=1) {
+            $result = Db::name('todolist')
+            ->where('id', $id)
+            ->update($updateData);
+            if ($result) {
+                return "Success";
+            }else{
+                return "ERROR";
+            }
         }
+        return $id;
     }
 
     public function todoListMarkAsCompleted()

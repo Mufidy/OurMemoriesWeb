@@ -3,6 +3,8 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="__CSS__bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="__CSS__ourmemery.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__buttons.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__font-awesome.min.css" type="text/css" />
   <link rel="stylesheet" href="__CSS__BeatPicker.css" type="text/css" />
 	<script src="__JS__jquery-1.11.1.min.js"></script>
 	<script src="__JS__bootstrap.js"></script>
@@ -28,7 +30,7 @@
       <div class="col-md-4 col-sm-4 addlabel">纪念日期:&nbsp;</div>
       <div class="col-md-1 col-sm-1"></div>
       <div class="col-md-5 col-sm-5 addcontent">
-        <input type="text" data-beatpicker="true" data-beatpicker-module="clear" name="date" placeholder="yyyy-mm-dd" class="addinput" />
+        <input type="text" data-beatpicker="true" data-beatpicker-module="clear" name="date" placeholder="请输入纪念日期" class="addinput" />
       </div>
       <br/><br/><br/>
     </div>
@@ -65,7 +67,12 @@
     <div class="row">
       <div class="col-md-5 col-sm-5"></div>
       <div class="col-md-2 col-sm-2 addcontent">
-        <input type="submit" value="添加纪念日"/>
+        <input type="submit" class="button button-rounded button-raised button-primary" value="添加纪念日"/>
+      </div>
+      <div class="col-md-2 col-sm-2">
+        <button type="button" class="button button-border button-rounded button-primary" onclick="javascript:history.go(-1)">
+          <i class="icon-undo"></i> 返回
+        </button>
       </div>
       <br/><br/><br/>
     </div>
