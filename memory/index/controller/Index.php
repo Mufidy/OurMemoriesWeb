@@ -61,6 +61,7 @@ class Index extends Controller
 	    $this->redirect('/');
     }
 
+
     public function yesterday()
     {   
         if(!($this->checkLogin()))
@@ -75,7 +76,9 @@ class Index extends Controller
             //以下为截取内容的函数，缩短内容。。后续可通过ajax加载全部内容。
             
             for ($i=0; $i < count($yearData); $i++) { 
-                $brPos=strpos($yearData[$i]['content'],'<br>');
+                $yearData[$i]['title'] = htmlspecialchars($yearData[$i]['title']);
+                $yearData[$i]['content'] = htmlspecialchars($yearData[$i]['content']);//将特殊字符过滤为HTML实体
+                $brPos=strpos($yearData[$i]['content'],PHP_EOL);
                 $conLen=strlen($yearData[$i]['content']);
                 if ($conLen<=80 && !$brPos) {
                     $yearData[$i]['more']=0;
@@ -126,7 +129,7 @@ class Index extends Controller
         $highlightStr = input('post.highlight');
         $highlight = $highlightStr=="highlightYes"?1:0;
         $content = input('post.content');
-        $content = str_replace(PHP_EOL,'<br>',$content);
+        //$content = str_replace(PHP_EOL,'<br>',$content);//不需要，应存储原始格式的数据
         $togetherDay = input('post.togetherDay');
         $image = input('post.image');
         if ($togetherDay == "yes") 
@@ -167,7 +170,7 @@ class Index extends Controller
         $id = input('get.id/d');
         $data = Db::name('yesterday')->where('id', $id)->find();
 
-        $data['content'] = str_replace('<br>', PHP_EOL,  $data['content']);
+        //$data['content'] = str_replace('<br>', PHP_EOL,  $data['content']);
 
         $this->assign("data",$data);
         $this->assign("username",session('username'));
@@ -191,7 +194,7 @@ class Index extends Controller
         $highlightStr = input('post.highlight');
         $highlight = $highlightStr=="highlightYes"?1:0;
         $content = input('post.content');
-        $content = str_replace(PHP_EOL,'<br>',$content);
+        //$content = str_replace(PHP_EOL,'<br>',$content);
         $image = input('post.image');
         $togetherDay = input('post.togetherDay');
         if ($togetherDay == "yes") 
@@ -239,21 +242,10 @@ class Index extends Controller
     {
         $id = input('post.id/d');
         $data = Db::name('yesterday')->where('id', $id)->find();
+        $data['content'] = htmlspecialchars($data['content']);
+        $data['content'] = str_replace(array("\r\n", "\r", "\n"), "<br />", $data['content']); 
         return "{\"content\":\"".$data['content']."\"}";
     }
-
-    public function memorial()
-    {
-        if(!($this->checkLogin()))
-        {
-            return $this->redirect('/showLogin?to=memorial');
-        }
-        $memorialDayData = Db::name('memorial')->where('deleted',0)->order('time')->select();
-        $this->assign("data",$memorialDayData);
-        $this->assign("username",session('username'));
-        return $this->fetch();
-    }
-
 
     public function tomorrow()
     {
@@ -298,6 +290,11 @@ class Index extends Controller
             where l.done=0 and l.deleted=0 and l.type=t.id order by l.deadline");
         $todoItemsDone = Db::query("select l.id,l.title,l.content,l.deadline,t.type,l.type as typeId from todolist l,todoType t
             where l.done=1 and l.deleted=0 and l.type=t.id order by l.deadline");
+        for ($i=0; $i < count($todoItems); $i++) { 
+            $todoItems[$i]['title']=htmlspecialchars($todoItems[$i]['title']);
+            $todoItems[$i]['content']=htmlspecialchars($todoItems[$i]['content']);
+            $todoItems[$i]['content']=str_replace(array("\r\n", "\r", "\n"), "<br />",$todoItems[$i]['content']);
+        }
         $this->assign("typeCount",$typeCount);
         $this->assign("todoItems",$todoItems);
         $this->assign("typeCountDone",$typeCountDone);
@@ -414,6 +411,23 @@ class Index extends Controller
 
 
     /*====For memorial page start====*/
+    public function memorial()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=memorial');
+        }
+        $memorialDayData = Db::name('memorial')->where('deleted',0)->order('time')->select();
+        for ($i=0; $i < count($memorialDayData); $i++) {
+            $memorialDayData[$i]['title'] = htmlspecialchars($memorialDayData[$i]['title']);
+            $memorialDayData[$i]['content'] = htmlspecialchars($memorialDayData[$i]['content']);
+            $memorialDayData[$i]['content'] = str_replace(array("\r\n", "\r", "\n"), "<br />", $memorialDayData[$i]['content']);
+        }
+        $this->assign("data",$memorialDayData);
+        $this->assign("username",session('username'));
+        return $this->fetch();
+    }
+
     public function addMemorial()
     {
         if(!($this->checkLogin()))
@@ -423,50 +437,6 @@ class Index extends Controller
 
         $this->assign("username",session('username'));
         return $this->fetch();
-    }
-
-    public function editMemorial()
-    {
-        if(!($this->checkLogin()))
-        {
-            return $this->redirect('/showLogin?to=memorial');
-        }
-
-        $id = input('get.id/d');
-        $data = Db::name('memorial')->where('id', $id)->find();
-
-        $data['content'] = str_replace('<br>', PHP_EOL,  $data['content']);
-
-        $this->assign("data",$data);
-        $this->assign("username",session('username'));
-        return $this->fetch();
-    }
-
-    public function updateMemorial()
-    {
-        if(!($this->checkLogin()))
-        {
-            return $this->redirect('/showLogin?to=memorial');
-        }
-
-        $id = input('post.id');
-        $date = input('post.date');
-        $title = input('post.title');
-        $content = input('post.content');
-        $content = str_replace(PHP_EOL,'<br>',$content);
-        $image = input('post.image');
-
-        $updateData['time'] = $date;
-        $updateData['title'] = $title;
-        $updateData['content'] = $content;
-        $updateData['image'] = $image;
-
-        Db::table('memorial')
-        ->where('id', $id)
-        ->update($updateData);
-        $this->logAction("更新纪念日",$id);
-        return $this->success('更新成功','/memorial','',1);
-
     }
 
     public function insertIntoMemorial()
@@ -479,7 +449,7 @@ class Index extends Controller
         $date = input('post.date');
         $title = input('post.title');
         $content = input('post.content');
-        $content = str_replace(PHP_EOL,'<br>',$content);
+        //$content = str_replace(PHP_EOL,'<br>',$content);
         $image = input('post.image');
         
         $insertData['time'] = $date;
@@ -497,6 +467,50 @@ class Index extends Controller
         {
             return $this->error("系统故障，数据添加失败，请稍后再试或联系你的宝贝儿老公~",null,'',3);
         }
+    }
+
+    public function editMemorial()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=memorial');
+        }
+
+        $id = input('get.id/d');
+        $data = Db::name('memorial')->where('id', $id)->find();
+
+        //$data['content'] = str_replace('<br>', PHP_EOL,  $data['content']);
+
+        $this->assign("data",$data);
+        $this->assign("username",session('username'));
+        return $this->fetch();
+    }
+
+    public function updateMemorial()
+    {
+        if(!($this->checkLogin()))
+        {
+            return $this->redirect('/showLogin?to=memorial');
+        }
+
+        $id = input('post.id');
+        $date = input('post.date');
+        $title = input('post.title');
+        $content = input('post.content');
+        //$content = str_replace(PHP_EOL,'<br>',$content);
+        $image = input('post.image');
+
+        $updateData['time'] = $date;
+        $updateData['title'] = $title;
+        $updateData['content'] = $content;
+        $updateData['image'] = $image;
+
+        Db::table('memorial')
+        ->where('id', $id)
+        ->update($updateData);
+        $this->logAction("更新纪念日",$id);
+        return $this->success('更新成功','/memorial','',1);
+
     }
 
     public function deleteMemorial()
