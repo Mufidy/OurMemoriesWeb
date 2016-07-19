@@ -10,6 +10,7 @@
   <script src="__JS__jquery-1.11.1.min.js"></script>
   <script src="__JS__bootstrap.js"></script>
   <script src="__JS__BeatPicker.js"></script>
+  <script src="__JS__jquery.json.min.js"></script>
   <script src="__JS__todolist.js"></script>
 
   <title>Todo List</title>
@@ -253,6 +254,12 @@ $("input,textarea").focus(function (e) {
 $("#type").change(function(){
   $("#submitHint").html("");
   $("#submitHintEdit").html("");
+});
+$(document).ready(function () {
+  $(".oneTodoItemContentText").each(function(){
+    var t = $(this).text().replace(/&endl;/g,'<br/>');
+    $(this).html(t);
+  });
 });
 </script>
 </html>

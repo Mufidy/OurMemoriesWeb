@@ -313,7 +313,7 @@ class Index extends Controller
             return "Error. Not login.";
         }
         $dataInfo = input('post.data');
-        $dataInfo = str_replace("\n","<br>",$dataInfo);//这边一定要先处理换行符，否则无法解析json。另；textarea中的换行是\n，使用PHP_EOL会出错
+        //$dataInfo = str_replace("\n","<br>",$dataInfo);//这边一定要先处理换行符，否则无法解析json。另；textarea中的换行是\n，使用PHP_EOL会出错
         $data = json_decode($dataInfo,true);
         $insertData["title"] = $data['title'];
         $insertData["deadline"] = $data['deadline'];
@@ -335,7 +335,7 @@ class Index extends Controller
             return "Error. Not login.";
         }
         $dataInfo = input('post.data');
-        $dataInfo = str_replace("\n","<br>",$dataInfo);//这边一定要先处理换行符，否则无法解析json。另；textarea中的换行是\n，使用PHP_EOL会出错
+        //$dataInfo = str_replace("\n","<br>",$dataInfo);//这边一定要先处理换行符，否则无法解析json。另；textarea中的换行是\n，使用PHP_EOL会出错
         $data = json_decode($dataInfo,true);
         $id = $data['id'];
         $updateData["title"] = $data['title'];
@@ -353,7 +353,7 @@ class Index extends Controller
                 return "ERROR";
             }
         }
-        return $id;
+        return "ERROR";
     }
 
     public function todoListMarkAsCompleted()
