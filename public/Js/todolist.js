@@ -1,11 +1,3 @@
-function showCountSpan(element) {
-	$(element).children(".todoProjCount").show();
-}
-
-function hideCountSpan(element) {
-	$(element).children(".todoProjCount").hide();
-}
-
 function toggleContent(element) {
 	var displayState = false;
 	if ($(element).parent().children(".oneTodoItemContent").css("display")==='block') {
@@ -26,6 +18,18 @@ function showAddTodoItemBody() {
 function hideAddTodoItemBody() {
 	$(".addTodoItemBody").hide("normal");
 	$(".addTodoItemIcon").show();
+}
+
+function todoItemCountInc(typeId){
+	var count = $("#todoProjCount"+typeId).text();
+	count++;
+	$("#todoProjCount"+typeId).text(count);
+}
+
+function todoItemCountDec(typeId){
+	var count = $("#todoProjCount"+typeId).text();
+	count--;
+	$("#todoProjCount"+typeId).text(count);
 }
 
 function addTodoItem(){
@@ -63,7 +67,6 @@ function addTodoItem(){
 	            	document.forms["f"]["content"].value="";
 	            	$("#type").val("");
 	            	hideAddTodoItemBody();
-	            	content = endlToDisplay(content);
 	            	var toAppendHtml = '<div class="oneTodoItem" id="oneTodoItem'+itemId+'">\
 			            <i class="icon-circle-blank '+typeStr[type]+'Type" onclick="toggleContent(this);"></i>\
 			            <span class="oneTodoItemTitle" onclick="toggleContent(this);">'+title+'</span>\
@@ -73,7 +76,9 @@ function addTodoItem(){
 			              <button class="button button-pill button-tiny '+typeStr[type]+'Type" onclick="editTodoItem(this,'+itemId+','+type+');">修改</button>\
 			              <button class="button button-pill button-tiny" style="color:red" onclick="deleteTodoItem(this,'+itemId+');"><i class="icon-trash"></i></button>\
 			            </div>\
-			          </div>'
+			          </div>';
+			        todoItemCountInc(type);
+			        todoItemCountInc(0);//将‘全部’一项个数加一
 	            	$("#todoLists").append(toAppendHtml);
 	            	showAllItems();
 	            }
@@ -86,12 +91,14 @@ function showAllItems() {
 	$("#typeTitle").html("全部");
 	$("#todoListsDone").hide();
 	$("#todoLists").show("normal");
+	$(".addTodoItemIcon").show();
 }
 
 function showAllDoneItems() {
 	$("#typeTitle").html("全部（已完成）");
 	$("#todoLists").hide();
 	$("#todoListsDone").show("normal");
+	$(".addTodoItemIcon").hide();
 }
 
 function showTypeList(typeId) {
@@ -176,7 +183,7 @@ function markAsUnCompleted(element,id) {
   	}
 }
 
-function deleteTodoItem(element,id) {
+function deleteTodoItem(element,id,typeId) {
 	var ret = window.confirm("确定要删除这条待办事项嘛宝贝儿~\r\n删除了你的宝贝儿老公可就不完成了哦~~");
   	//当点击确定时 返回 true 
   	if(ret){
@@ -188,7 +195,9 @@ function deleteTodoItem(element,id) {
          	success: function(data){
          		var hintSpan = "<span style='color:red'>&nbsp;&nbsp;删除成功</span>";
          		$(element).parent().parent().children(".oneTodoItemTitle").append(hintSpan);
-         		setTimeout(function(){$(element).parent().parent().remove();}, 1500);
+     		    todoItemCountDec(0);
+     			todoItemCountDec(typeId);
+         		setTimeout(function(){$(element).parent().parent().remove();}, 500);
           	}
       	});
   	}
@@ -207,6 +216,7 @@ function editTodoItem(element,id,typeId) {
 	 	success: function(data){
 	 		var item = $.evalJSON(data);
 	 		document.forms["editF"]["id"].value=id;
+	 		document.forms["editF"]["oldTypeId"].value=typeId;
 			document.forms["editF"]["title"].value = item.title;
 			document.forms["editF"]["deadline"].value= item.deadline;
 			var contentValue = item.content;
@@ -223,6 +233,7 @@ function editTodoItem(element,id,typeId) {
 
 function updateTodoItem(){
 	var id = document.forms["editF"]["id"].value;
+	var oldTypeId = document.forms["editF"]["oldTypeId"].value;
 	var title = document.forms["editF"]["title"].value;
 	var deadline = document.forms["editF"]["deadline"].value;
 	var type = $("#editType option:selected").val();
@@ -257,11 +268,11 @@ function updateTodoItem(){
 	            	$("#oneTodoItem"+id).children("i").attr("class","icon-circle-blank "+typeStr[type]+"Type");
 	            	$("#oneTodoItem"+id).find("button").attr("class","button button-pill button-tiny "+typeStr[type]+"Type");
 	            	$("#submitHintEdit").html("更新成功");
-	            	setTimeout(function()
-	            		{
-	            			clearEditFormAndHide();
-	            			mScrollById("oneTodoItem"+id);
-	            		},1000)            	
+	        		if (oldTypeId!=type) {todoItemCountDec(oldTypeId);todoItemCountInc(type);}
+	            	setTimeout(function(){
+	        			clearEditFormAndHide();
+	        			mScrollById("oneTodoItem"+id);
+	        		},1000)            	
 	            }
 	        },
 	        error: function(){

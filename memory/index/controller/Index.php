@@ -295,6 +295,11 @@ class Index extends Controller
             $todoItems[$i]['content']=htmlspecialchars($todoItems[$i]['content']);
             $todoItems[$i]['content']=str_replace(array("\r\n", "\r", "\n"), "<br />",$todoItems[$i]['content']);
         }
+        for ($i=0; $i < count($todoItemsDone); $i++) { 
+            $todoItemsDone[$i]['title']=htmlspecialchars($todoItemsDone[$i]['title']);
+            $todoItemsDone[$i]['content']=htmlspecialchars($todoItemsDone[$i]['content']);
+            $todoItemsDone[$i]['content']=str_replace(array("\r\n", "\r", "\n"), "<br />",$todoItemsDone[$i]['content']);
+        }
         $this->assign("typeCount",$typeCount);
         $this->assign("todoItems",$todoItems);
         $this->assign("typeCountDone",$typeCountDone);

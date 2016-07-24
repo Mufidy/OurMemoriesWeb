@@ -34,74 +34,74 @@
         </div>
         <div class="tab-content todoTypeTabCont">
           <div class="tab-pane fade in active" id="todoProj">
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showTypeList(0)">
+            <div class="todoTypeList" onclick="showTypeList(0)">
               <span class="allType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               全部 <i class="icon-list-ol"></i>
-              <span class="todoProjCount">{$typeCount['all']}</span>
+              <span class="todoProjCount" id="todoProjCount0">{$typeCount['all']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showTypeList(1)">
+            <div class="todoTypeList" onclick="showTypeList(1)">
               <span class="foodType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               美食 <i class="icon-food"></i>
-              <span class="todoProjCount">{$typeCount['food']}</span>
+              <span class="todoProjCount" id="todoProjCount1">{$typeCount['food']}</span>
             </div>    
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showTypeList(2)">
+            <div class="todoTypeList" onclick="showTypeList(2)">
               <span class="hotelType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               酒店 <i class="icon-home"></i>
-              <span class="todoProjCount">{$typeCount['hotel']}</span>
+              <span class="todoProjCount" id="todoProjCount2">{$typeCount['hotel']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showTypeList(3)">
+            <div class="todoTypeList" onclick="showTypeList(3)">
               <span class="shopType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               购物 <i class="icon-shopping-cart"></i>
-              <span class="todoProjCount">{$typeCount['shop']}</span>
+              <span class="todoProjCount" id="todoProjCount3">{$typeCount['shop']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showTypeList(4)">
+            <div class="todoTypeList" onclick="showTypeList(4)">
               <span class="travelType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               旅行 <i class="icon-plane"></i>
-              <span class="todoProjCount">{$typeCount['travel']}</span>
+              <span class="todoProjCount" id="todoProjCount4">{$typeCount['travel']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showTypeList(5)">
+            <div class="todoTypeList" onclick="showTypeList(5)">
               <span class="lifeType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               生活 <i class="icon-gift"></i>
-              <span class="todoProjCount">{$typeCount['life']}</span>
+              <span class="todoProjCount" id="todoProjCount5">{$typeCount['life']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);"  onclick="showTypeList(6)">
+            <div class="todoTypeList"  onclick="showTypeList(6)">
               <span class="othersType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               杂项 <i class="icon-magic"></i>
-              <span class="todoProjCount">{$typeCount['others']}</span>
+              <span class="todoProjCount" id="todoProjCount6">{$typeCount['others']}</span>
             </div>
           </div>
           <div class="tab-pane fade" id="todoDone">
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(0)">
+            <div class="todoTypeList" onclick="showDoneTypeList(0)">
               <span class="allType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               全部 <i class="icon-list-ol"></i>（已完成）
               <span class="todoProjCount">{$typeCountDone['all']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(1)">
+            <div class="todoTypeList" onclick="showDoneTypeList(1)">
               <span class="foodType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               美食 <i class="icon-food"></i>（已完成）
               <span class="todoProjCount">{$typeCountDone['food']}</span>
             </div> 
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(2)">
+            <div class="todoTypeList" onclick="showDoneTypeList(2)">
               <span class="hotelType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               酒店 <i class="icon-home"></i>（已完成）
               <span class="todoProjCount">{$typeCountDone['hotel']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(3)">
+            <div class="todoTypeList" onclick="showDoneTypeList(3)">
               <span class="shopType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               购物 <i class="icon-shopping-cart"></i>（已完成）
               <span class="todoProjCount">{$typeCountDone['shop']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(4)">
+            <div class="todoTypeList" onclick="showDoneTypeList(4)">
               <span class="travelType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               旅行 <i class="icon-plane"></i> （已完成）
               <span class="todoProjCount">{$typeCountDone['travel']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(5)">
+            <div class="todoTypeList" onclick="showDoneTypeList(5)">
               <span class="lifeType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               生活 <i class="icon-gift"></i>（已完成）
               <span class="todoProjCount">{$typeCountDone['life']}</span>
             </div>
-            <div class="todoTypeList" onmouseover="showCountSpan(this);" onmouseout="hideCountSpan(this);" onclick="showDoneTypeList(6)">
+            <div class="todoTypeList" onclick="showDoneTypeList(6)">
               <span class="othersType">&nbsp;<i class="icon-circle"></i>&nbsp;</span>
               杂项 <i class="icon-magic"></i>（已完成）
               <span class="todoProjCount">{$typeCountDone['others']}</span>
@@ -120,7 +120,7 @@
             <div class="oneTodoItemContent"><span class="oneTodoItemContentText">{$item.content}</span><br/>
               <button class="button button-pill button-tiny {$item.type}Type" onclick="markAsCompleted(this,{$item.id});">标记为完成</button>
               <button class="button button-pill button-tiny {$item.type}Type" onclick="editTodoItem(this,{$item.id},{$item.typeId});">修改</button>
-              <button class="button button-pill button-tiny" style="color:red" onclick="deleteTodoItem(this,{$item.id});"><i class="icon-trash"></i></button>    
+              <button class="button button-pill button-tiny" style="color:red" onclick="deleteTodoItem(this,{$item.id},{$item.typeId});"><i class="icon-trash"></i></button>    
             </div>
           </div>
           {/volist}
@@ -195,6 +195,7 @@
                 <div class="col-md-4 col-sm-4 addItemLabel">事项标题：</div>
                 <div class="col-md-8 col-sm-8">
                   <input type="text" name="id" style="display:none;">
+                  <input type="text" name="oldTypeId" style="display:none;">
                   <input type="text" name="title" placeholder="请输入事项标题" class="addItemInput">
                 </div>
               </div>
