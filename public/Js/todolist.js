@@ -43,7 +43,6 @@ function addTodoItem(){
 	}else{
 		//var data = "{\"title\":\""+title+"\",\"deadline\":\""+deadline+"\",\"type\":\""+type+"\",\"content\":\""+content+"\"}";
 		//alert(data)
-		content = symbolToEndl(content);
 		var thing = {title:title,deadline:deadline,type:type,content:content};
 		var data = $.toJSON(thing);//该插件可以转义大部分特殊字符
 		//alert(data)//!!!!!!!!!!!!!!!!!debug
@@ -200,14 +199,26 @@ function editTodoItem(element,id,typeId) {
 	$(".addTodoItemBody").hide();
 	$(".addTodoItemIcon").hide();
 	$(".editTodoItem").show();
-	document.forms["editF"]["id"].value=id;
-	document.forms["editF"]["title"].value=$(element).parent().parent().children(".oneTodoItemTitle").text();
-	document.forms["editF"]["deadline"].value=$(element).parent().parent().children(".oneTodoItemDdl").text().substring(5);
-	var contentValue = $(element).parent().parent().children(".oneTodoItemContent").children(".oneTodoItemContentText").html();
-	contentValue = contentValue.replace(/\<br\>/g,"\n");
-	document.forms["editF"]["content"].value=contentValue;
-	$("#editType").val(typeId);
-	mScroll("editTodoItem");
+  	$.ajax({
+	 	type: "post",
+	 	url: "getTodoItem",
+	 	data: {id,id},
+	 	dataType: "json",
+	 	success: function(data){
+	 		var item = $.evalJSON(data);
+	 		document.forms["editF"]["id"].value=id;
+			document.forms["editF"]["title"].value = item.title;
+			document.forms["editF"]["deadline"].value= item.deadline;
+			var contentValue = item.content;
+			contentValue = contentValue.replace(/\<br\>/g,"\n");
+			document.forms["editF"]["content"].value=contentValue;
+			$("#editType").val(typeId);
+			mScroll("editTodoItem");
+	  	},
+	  	error: function() {
+	  		alert("信息获取错误啦~请稍后再试或联系你的宝贝儿老公哦~")
+	  	}
+	});
 }
 
 function updateTodoItem(){
@@ -225,7 +236,7 @@ function updateTodoItem(){
 		$("#submitHintEdit").html("请选择事项类别哦~");
 	}else{
 		//var data = "{\"id\":\""+id+"\",\"title\":\""+title+"\",\"deadline\":\""+deadline+"\",\"type\":\""+type+"\",\"content\":\""+content+"\"}";
-		content = symbolToEndl(content);
+		//content = symbolToEndl(content);
 		var thing = {id:id,title:title,deadline:deadline,type:type,content:content};
 		var data = $.toJSON(thing);//该插件可以转义大部分特殊字符
 		//alert(data)
@@ -239,10 +250,10 @@ function updateTodoItem(){
 	            if (data=="\"ERROR\"") {
 	            	alert("哎呀，出错了，更新失败了，请稍后再试或联系你的宝贝儿老公哦~");
 	            }else{
-	            	content = endlToDisplay(content);
+	            	//content = endlToDisplay(content);
 	            	$("#oneTodoItem"+id).children(".oneTodoItemTitle").text(title);
 	            	$("#oneTodoItem"+id).children(".oneTodoItemDdl").text("截止日期："+deadline);
-	            	$("#oneTodoItem"+id).children(".oneTodoItemContent").children(".oneTodoItemContentText").html(content);
+	            	$("#oneTodoItem"+id).children(".oneTodoItemContent").children(".oneTodoItemContentText").html(HTMLEnCode(content));
 	            	$("#oneTodoItem"+id).children("i").attr("class","icon-circle-blank "+typeStr[type]+"Type");
 	            	$("#oneTodoItem"+id).find("button").attr("class","button button-pill button-tiny "+typeStr[type]+"Type");
 	            	$("#submitHintEdit").html("更新成功");
@@ -259,6 +270,21 @@ function updateTodoItem(){
       	});
 	}	
 }
+
+function HTMLEnCode(str)  
+{  
+    var s = "";  
+    if (str.length == 0)
+        return "";  
+    s = str.replace(/&/g,"&gt;");  
+    s = s.replace(/</g,  "&lt;");  
+    s = s.replace(/>/g,  "&gt;");  
+    s = s.replace(/ /g,  "&nbsp;");
+    s = s.replace(/\'/g, "'");  
+    s = s.replace(/\"/g, "&quot;");  
+    s = s.replace(/\n/g, "<br>");  
+    return s;  
+} 
 
 function clearEditFormAndHide(){
 	$(".addTodoItemIcon").show();
@@ -279,14 +305,4 @@ function mScroll(className){
 function mScrollById(id){
 	$("html,body").stop(true);
 	$("html,body").animate({scrollTop:$("#"+id).offset().top-50}, 1000);
-}
-
-function symbolToEndl(str){
-	var result = str.replace(/\n/g,"&endl;");
-	return result;
-}
-
-function endlToDisplay(str){
-	var result = str.replace(/&endl;/g,"<br/>");
-	return result;
 }

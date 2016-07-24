@@ -23,6 +23,7 @@
 \think\Route::rule('tomorrow','index/index/tomorrow');
 \think\Route::rule('todoList','index/index/todoList');
 \think\Route::rule('addTodoItem','index/index/addTodoItem');
+\think\Route::rule('getTodoItem','index/index/getTodoItem');
 \think\Route::rule('updateTodoItem','index/index/updateTodoItem');
 \think\Route::rule('todoListMarkAsCompleted','index/index/todoListMarkAsCompleted');
 \think\Route::rule('todoListMarkAsUnCompleted','index/index/todoListMarkAsUnCompleted');

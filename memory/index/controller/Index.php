@@ -325,6 +325,20 @@ class Index extends Controller
         }
     }
 
+    public function getTodoItem()
+    {
+        if(!($this->checkLogin()))
+        {
+            return "Error. Not login.";
+        }
+        $id = input('post.id/d');
+        $data = Db::name('todolist')->where('id', $id)->find();
+        $data['title'] = str_replace('"', '\"', $data['title']);
+        $data['content'] = str_replace('"', '\"', $data['content']);
+        $data['content'] = str_replace(array("\r\n", "\r", "\n"), "<br>",$data['content']);
+        return "{\"title\":\"".$data['title']."\",\"deadline\":\"".$data['deadline']."\",\"type\":\"".$data['type']."\",\"content\":\"".$data['content']."\"}";
+    }
+
     public function updateTodoItem()
     {
         if(!($this->checkLogin()))
