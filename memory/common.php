@@ -16,6 +16,7 @@
 \think\Route::rule('editYesterday','index/index/editYesterday');
 \think\Route::rule('deleteYesterday','index/index/deleteYesterday');
 \think\Route::rule('getMoreContentYesterday','index/index/getMoreContentYesterday');
+\think\Route::rule('getMorePictureYesterday','index/index/getMorePictureYesterday');
 \think\Route::rule('memorial','index/index/memorial');
 \think\Route::rule('addMemorial','index/index/addMemorial');
 \think\Route::rule('editMemorial','index/index/editMemorial');

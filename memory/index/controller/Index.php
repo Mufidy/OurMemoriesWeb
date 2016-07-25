@@ -92,6 +92,11 @@ class Index extends Controller
                         $yearData[$i]['content']=substr($yearData[$i]['content'], 0, 79);
                     }                
                 }
+                if ($yearData[$i]['image1']!=null || $yearData[$i]['image2']!=null || $yearData[$i]['image3']!=null) {
+                    $yearData[$i]['morePic'] = 1;
+                }else{
+                    $yearData[$i]['morePic'] = 0;
+                }
             }
 
             $data[$year['year']] = $yearData;
@@ -132,6 +137,9 @@ class Index extends Controller
         //$content = str_replace(PHP_EOL,'<br>',$content);//不需要，应存储原始格式的数据
         $togetherDay = input('post.togetherDay');
         $image = input('post.image');
+        $image1 = input('post.image1');
+        $image2 = input('post.image2');
+        $image3 = input('post.image3');
         if ($togetherDay == "yes") 
         {
             $startdate=strtotime("2014-11-7");
@@ -148,6 +156,9 @@ class Index extends Controller
         $insertData['togetherDay'] = $togetherDay;
         $insertData['addTime'] = date("Y-m-d H:i:s");
         $insertData['image'] = $image;
+        $insertData['image1'] = $image1;
+        $insertData['image2'] = $image2;
+        $insertData['image3'] = $image3;
 
         $resultID = Db::name('yesterday')->insertGetId($insertData);
         if ($resultID)
@@ -245,6 +256,32 @@ class Index extends Controller
         $data['content'] = htmlspecialchars($data['content']);
         $data['content'] = str_replace(array("\r\n", "\r", "\n"), "<br />", $data['content']); 
         return "{\"content\":\"".$data['content']."\"}";
+    }
+
+    public function getMorePictureYesterday()
+    {
+        $id = input('post.id/d');
+        $data = Db::name('yesterday')->where('id', $id)->find();
+        $result = "[";
+        if ($data['image1']!=null) {
+            $result.="\"".$data['image1']."\"";
+        }
+        if ($data['image2']!=null) {
+            if (strlen($result)==1) {
+                $result.="\"".$data['image2']."\"";
+            }else{
+                $result.=",\"".$data['image2']."\"";
+            }
+        }
+        if ($data['image3']!=null) {
+            if (strlen($result)==1) {
+                $result.="\"".$data['image3']."\"";
+            }else{
+                $result.=",\"".$data['image3']."\"";
+            }
+        }
+        $result.="]";
+        return $result;
     }
 
     public function tomorrow()

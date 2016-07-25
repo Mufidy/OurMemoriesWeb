@@ -99,8 +99,7 @@ function deleteList(id) {
 }
 
 function getMoreContent(id){
-	$("#getMoreContent"+id).children("p").children(".addMoreButton").css("cursor","default");
-	$("#getMoreContent"+id).children("p").children(".addMoreButton").text("正在玩命加载中......");
+
 	$.ajax({
          type: "post",
          url: "getMoreContentYesterday",
@@ -109,6 +108,28 @@ function getMoreContent(id){
          success: function(data){
          	var json=JSON.parse(data);
             $("#getMoreContent"+id).html(json.content);
+          },
+          error: function(){
+          	alert("哎呀，获取更多内容时出错了~稍等一下吧宝贝儿~\r\n或者联系你的宝贝儿老公嘛~");
+          }
+      });
+}
+
+function getMorePicture(id){
+    $("#getMorePicture"+id).children(".addMoreButton").css("cursor","default");
+	$("#getMorePicture"+id).children(".addMoreButton").text("正在努力加载图片中......");
+	$.ajax({
+         type: "post",
+         url: "getMorePictureYesterday",
+         data: {id,id},
+         dataType: "json",
+         success: function(data){
+         	var obj=JSON.parse(data);
+         	for (var o in obj) {
+         		var appendHtml = "<img src=\""+obj[o]+"\">";
+         		$("#getMorePicture"+id).append(appendHtml);
+         	}
+            $("#getMorePicture"+id).children(".addMoreButton").remove();
           },
           error: function(){
           	alert("哎呀，获取更多内容时出错了~稍等一下吧宝贝儿~\r\n或者联系你的宝贝儿老公嘛~");
