@@ -92,11 +92,12 @@ class Index extends Controller
                         $yearData[$i]['content']=substr($yearData[$i]['content'], 0, 79);
                     }                
                 }
+                /*
                 if ($yearData[$i]['image1']!=null || $yearData[$i]['image2']!=null || $yearData[$i]['image3']!=null) {
                     $yearData[$i]['morePic'] = 1;
                 }else{
                     $yearData[$i]['morePic'] = 0;
-                }
+                }*/
             }
 
             $data[$year['year']] = $yearData;
@@ -256,32 +257,6 @@ class Index extends Controller
         $data['content'] = htmlspecialchars($data['content']);
         $data['content'] = str_replace(array("\r\n", "\r", "\n"), "<br />", $data['content']); 
         return "{\"content\":\"".$data['content']."\"}";
-    }
-
-    public function getMorePictureYesterday()
-    {
-        $id = input('post.id/d');
-        $data = Db::name('yesterday')->where('id', $id)->find();
-        $result = "[";
-        if ($data['image1']!=null) {
-            $result.="\"".$data['image1']."\"";
-        }
-        if ($data['image2']!=null) {
-            if (strlen($result)==1) {
-                $result.="\"".$data['image2']."\"";
-            }else{
-                $result.=",\"".$data['image2']."\"";
-            }
-        }
-        if ($data['image3']!=null) {
-            if (strlen($result)==1) {
-                $result.="\"".$data['image3']."\"";
-            }else{
-                $result.=",\"".$data['image3']."\"";
-            }
-        }
-        $result.="]";
-        return $result;
     }
 
     public function tomorrow()

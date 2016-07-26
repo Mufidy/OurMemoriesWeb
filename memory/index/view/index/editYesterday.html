@@ -63,14 +63,39 @@
     </div>
 
     <div class="row">
-      <div class="col-md-4 col-sm-4 addlabel">添加图片:&nbsp;</div>
+      <div class="col-md-4 col-sm-4 addlabel">封面图片:&nbsp;<br/><span style="font-size:10px;">若有预览图片<br>则说明图片已存在</span></div>
       <div class="col-md-1 col-sm-1"></div>
       <div class="col-md-5 col-sm-5 addcontent">
-         <input id="imageUpload" type="file" accept="image/*"/>
-         <img id="imagePreview" src="{$data.image}">
+        <input id="imageUpload" type="file" accept="image/*"/>
+         <img id="imagePreview" src="{$data.image}" width="150">
          <textarea id="imageBase64" name="image" style="display:none;">{$data.image}</textarea>
       </div>
       <br/><br/><br/>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 col-sm-4 addlabel">更多图片:&nbsp;<br/><span style="font-size:10px;">若有预览图片<br>则说明图片已存在</span></div>
+      <div id="morePicDiv">
+        <div class="col-md-2 col-sm-2">
+          <input id="imageUpload1" type="file" accept="image/*"/>      
+          <img id="imagePreview1" src="{$data.image1}" width="150">      
+          <textarea id="imageBase641" name="image1" style="display:none;">{$data.image1}</textarea>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <input id="imageUpload2" type="file" accept="image/*"/>      
+          <img id="imagePreview2" src="{$data.image2}" width="150">      
+          <textarea id="imageBase642" name="image2" style="display:none;">{$data.image2}</textarea>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <input id="imageUpload3" type="file" accept="image/*"/>      
+          <img id="imagePreview3" src="{$data.image3}" width="150">      
+          <textarea id="imageBase643" name="image3" style="display:none;">{$data.image3}</textarea>
+        </div>
+      </div>
+
+      <br/>      
+      <br/>      
+      <br/>      
     </div>
 
     <div class="row">
@@ -126,7 +151,16 @@ function checkForm()
     $("#onSubmitHint").html("请输入回忆内容哦宝贝儿~");
     return false;
   }
+  if (document.forms["f"]["image"].value=="") {
+    if (document.forms["f"]["image1"].value!="" || document.forms["f"]["image2"].value!="" || document.forms["f"]["image3"].value!="") {
+      $("#onSubmitHint").html("请先添加封面图片再添加其他图片哦宝贝儿~");
+      return false;
+    }
+  }
   $("#imageUpload").remove();
+  $("#imageUpload1").remove();
+  $("#imageUpload2").remove();
+  $("#imageUpload3").remove();
   return true;
 }
 
@@ -136,10 +170,55 @@ function cancel()
 }
 
 document.querySelector('#imageUpload').addEventListener('change', function () {
-    lrz(this.files[0],{width: 150,height: 150})
+    lrz(this.files[0],{width: 450,height: 450})
         .then(function (rst) {
             $("#imagePreview").attr('src',rst.base64);
             $("#imageBase64").text(rst.base64);
+        })
+        .catch(function (err) {
+            $("#onSubmitHint").html("啊哦，好像图片压缩失败了呢~快联系你哒宝贝儿老公~");
+            // 处理失败会执行
+        })
+        .always(function () {
+            // 不管是成功失败，都会执行
+        });
+});
+
+document.querySelector('#imageUpload1').addEventListener('change', function () {
+    lrz(this.files[0],{width: 450,height: 450})
+        .then(function (rst) {
+            $("#imagePreview1").attr('src',rst.base64);
+            $("#imageBase641").text(rst.base64);
+        })
+        .catch(function (err) {
+            $("#onSubmitHint").html("啊哦，好像图片压缩失败了呢~快联系你哒宝贝儿老公~");
+            // 处理失败会执行
+        })
+        .always(function () {
+            // 不管是成功失败，都会执行
+        });
+});
+
+document.querySelector('#imageUpload2').addEventListener('change', function () {
+    lrz(this.files[0],{width: 450,height: 450})
+        .then(function (rst) {
+            $("#imagePreview2").attr('src',rst.base64);
+            $("#imageBase642").text(rst.base64);
+        })
+        .catch(function (err) {
+            $("#onSubmitHint").html("啊哦，好像图片压缩失败了呢~快联系你哒宝贝儿老公~");
+            // 处理失败会执行
+        })
+        .always(function () {
+            // 不管是成功失败，都会执行
+        });
+});
+
+document.querySelector('#imageUpload3').addEventListener('change', function () {
+    lrz(this.files[0],{width: 150,height: 150})
+        .then(function (rst) {
+            $("#imagePreview3").attr('src',rst.base64);
+            $("#imageBase643").text(rst.base64);
         })
         .catch(function (err) {
             $("#onSubmitHint").html("啊哦，好像图片压缩失败了呢~快联系你哒宝贝儿老公~");

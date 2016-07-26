@@ -6,8 +6,10 @@
   <link rel="stylesheet" href="__CSS__buttons.css" type="text/css" />
   <link rel="stylesheet" href="__CSS__font-awesome.min.css" type="text/css" />
   <link rel="stylesheet" href="__CSS__yesterdayStyle.css" type="text/css" />
+  <link rel="stylesheet" href="__CSS__jquery.lightbox-0.5.css" type="text/css" />
 	<script src="__JS__jquery-1.11.1.min.js"></script>
 	<script src="__JS__bootstrap.js"></script>
+  <script src="__JS__jquery.lightbox-0.5.js"></script>
 	<script src="__JS__ourmemery.js"></script>
 
 	<title>Yesterday We Remember</title>
@@ -44,10 +46,17 @@
                   <span class="addMoreButton" onclick="getMoreContent({$onedata.id});">[more text]</span>{/if}
                 </p>
                 {notempty name="$onedata.image"}
-                <p id="getMorePicture{$onedata.id}">
-                  <img src="{$onedata.image}">
-                  {if condition="$onedata.morePic eq 1"}<span class="addMoreButton" onclick="getMorePicture({$onedata.id});">[more picture]</span>{/if}
-                </p>
+                <div id="getMorePicture{$onedata.id}">
+                  <a href="{$onedata.image}" title="{$onedata.title}"><img width="150" src="{$onedata.image}"></a>
+                  {notempty name="$onedata.image1"}<a href="{$onedata.image1}" title="{$onedata.title}"></a>{/notempty}
+                  {notempty name="$onedata.image2"}<a href="{$onedata.image2}" title="{$onedata.title}"></a>{/notempty}
+                  {notempty name="$onedata.image3"}<a href="{$onedata.image3}" title="{$onedata.title}"></a>{/notempty}
+                </div>
+                <script type="text/javascript">
+                  $(function() {
+                      $('#getMorePicture{$onedata.id} a').lightBox();
+                  });
+                </script>   
                 {/notempty}
               </div>
             </li>
@@ -81,7 +90,6 @@ $(".main .year>h2>a").click(function (e) {
     e.preventDefault();
     $(this).parents(".year").toggleClass("close1");
 });
-
 
 </script>
 </body>
