@@ -7,9 +7,11 @@
   <link rel="stylesheet" href="__CSS__font-awesome.min.css" type="text/css" />
 	<link rel="stylesheet" href="__CSS__templatemo_misc.css">
 	<link rel="stylesheet" href="__CSS__templatemo_style.css">
+  <link rel="stylesheet" href="__CSS__jquery.lightbox-0.5.css" type="text/css" />
 
   <script src="__JS__jquery-1.11.1.min.js"></script>
   <script src="__JS__bootstrap.js"></script>
+  <script src="__JS__jquery.lightbox-0.5.js"></script>
   <script src="__JS__memorial.js"></script>
 	<script src="__JS__templatemo_custom.js"></script>
 
@@ -72,7 +74,18 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-4 col-sm-12">
-                <img src="{$da.image}">
+                <div id="getMorePicture{$da.id}">
+                  <a onclick="closeModal();" href="{$da.image}" title="{$da.title}"><img width="220" src="{$da.image}">
+                  {eq name='$da.moreImage' value="1"}View More Images{/eq}</a>
+                  {notempty name="$da.image1"}<a href="{$da.image1}" title="{$da.title}"></a>{/notempty}
+                  {notempty name="$da.image2"}<a href="{$da.image2}" title="{$da.title}"></a>{/notempty}
+                  {notempty name="$da.image3"}<a href="{$da.image3}" title="{$da.title}"></a>{/notempty}
+                </div>
+                <script type="text/javascript">
+                  $(function() {
+                      $('#getMorePicture{$da.id} a').lightBox();
+                  });
+                </script>
               </div>
               <div class="col-md-7 col-md-offset-1 col-sm-12">
                 <div class="memorialTitle">
@@ -102,5 +115,11 @@
   {/volist}
   <!-- modal(more content) start-->
   {include file="public/bottom" /}
+
+  <script type="text/javascript">
+    function closeModal(){
+      $(".close").click();
+    }
+  </script>
 </body>
 </html>

@@ -208,6 +208,9 @@ class Index extends Controller
         $content = input('post.content');
         //$content = str_replace(PHP_EOL,'<br>',$content);
         $image = input('post.image');
+        $image1 = input('post.image1');
+        $image2 = input('post.image2');
+        $image3 = input('post.image3');
         $togetherDay = input('post.togetherDay');
         if ($togetherDay == "yes") 
         {
@@ -225,6 +228,9 @@ class Index extends Controller
         $updateData['togetherDay'] = $togetherDay;
         //$updateData['updateTime'] = date("Y-m-d H:i:s");//database update automatically
         $updateData['image'] = $image;
+        $updateData['image1'] = $image1;
+        $updateData['image2'] = $image2;
+        $updateData['image3'] = $image3;
 
         Db::table('yesterday')
         ->where('id', $id)
@@ -453,6 +459,10 @@ class Index extends Controller
             $memorialDayData[$i]['title'] = htmlspecialchars($memorialDayData[$i]['title']);
             $memorialDayData[$i]['content'] = htmlspecialchars($memorialDayData[$i]['content']);
             $memorialDayData[$i]['content'] = str_replace(array("\r\n", "\r", "\n"), "<br />", $memorialDayData[$i]['content']);
+            $memorialDayData[$i]['moreImage'] = 0;
+            if ($memorialDayData[$i]['image1']!=null || $memorialDayData[$i]['image2']!=null || $memorialDayData[$i]['image3']!=null) {
+                $memorialDayData[$i]['moreImage'] = 1;
+            }
         }
         $this->assign("data",$memorialDayData);
         $this->assign("username",session('username'));
@@ -482,12 +492,18 @@ class Index extends Controller
         $content = input('post.content');
         //$content = str_replace(PHP_EOL,'<br>',$content);
         $image = input('post.image');
+        $image1 = input('post.image1');
+        $image2 = input('post.image2');
+        $image3 = input('post.image3');
         
         $insertData['time'] = $date;
         $insertData['title'] = $title;
         $insertData['content'] = $content;
         $insertData['createTime'] = date("Y-m-d H:i:s");
         $insertData['image'] = $image;
+        $insertData['image1'] = $image1;
+        $insertData['image2'] = $image2;
+        $insertData['image3'] = $image3;
 
         $resultID = Db::name('memorial')->insertGetId($insertData);
         if ($resultID)
@@ -530,11 +546,17 @@ class Index extends Controller
         $content = input('post.content');
         //$content = str_replace(PHP_EOL,'<br>',$content);
         $image = input('post.image');
+        $image1 = input('post.image1');
+        $image2 = input('post.image2');
+        $image3 = input('post.image3');
 
         $updateData['time'] = $date;
         $updateData['title'] = $title;
         $updateData['content'] = $content;
         $updateData['image'] = $image;
+        $updateData['image1'] = $image1;
+        $updateData['image2'] = $image2;
+        $updateData['image3'] = $image3;
 
         Db::table('memorial')
         ->where('id', $id)

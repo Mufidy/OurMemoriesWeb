@@ -215,7 +215,7 @@ document.querySelector('#imageUpload2').addEventListener('change', function () {
 });
 
 document.querySelector('#imageUpload3').addEventListener('change', function () {
-    lrz(this.files[0],{width: 150,height: 150})
+    lrz(this.files[0],{width: 450,height: 450})
         .then(function (rst) {
             $("#imagePreview3").attr('src',rst.base64);
             $("#imageBase643").text(rst.base64);

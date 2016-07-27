@@ -43,7 +43,7 @@
               <p class="version">{empty name="$onedata.togetherDay"}&nbsp;{else /}{$onedata.togetherDay}天{/empty}</p>
               <div class="more">
                 <p id="getMoreContent{$onedata.id}">{$onedata.content}{if condition="$onedata.more eq 1"}...<br/>
-                  <span class="addMoreButton" onclick="getMoreContent({$onedata.id});">[more text]</span>{/if}
+                  <span class="addMoreButton" onclick="getMoreContent({$onedata.id});">[more]</span>{/if}
                 </p>
                 {notempty name="$onedata.image"}
                 <div id="getMorePicture{$onedata.id}">

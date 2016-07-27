@@ -52,14 +52,40 @@
     </div>
 
     <div class="row">
-      <div class="col-md-4 col-sm-4 addlabel">添加图片:&nbsp;</div>
+      <div class="col-md-4 col-sm-4 addlabel">封面图片:&nbsp;</div>
       <div class="col-md-1 col-sm-1"></div>
       <div class="col-md-5 col-sm-5 addcontent">
          <input id="imageUpload" type="file" accept="image/*"/>
-         <img id="imagePreview" src="">
+         <img id="imagePreview" width="220" src="">
          <textarea id="imageBase64" name="image" style="display:none;"></textarea>
       </div>
       <br/><br/><br/>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 col-sm-4 addlabel">更多图片:&nbsp;</div>
+      <div class="col-md-6 col-sm-6 addcontent"><i class="icon-picture" style="cursor:pointer;" onclick="addMorePic(this)"> 点击添加更多图片</i></div>
+      <div  style="display:none;" id="morePicDiv">
+        <div class="col-md-2 col-sm-2">
+          <input id="imageUpload1" type="file" accept="image/*"/>      
+          <img id="imagePreview1" width="180" src="">      
+          <textarea id="imageBase641" name="image1" style="display:none;"></textarea>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <input id="imageUpload2" type="file" accept="image/*"/>      
+          <img id="imagePreview2" width="180" src="">      
+          <textarea id="imageBase642" name="image2" style="display:none;"></textarea>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <input id="imageUpload3" type="file" accept="image/*"/>      
+          <img id="imagePreview3" width="180" src="">      
+          <textarea id="imageBase643" name="image3" style="display:none;"></textarea>
+        </div>
+      </div>
+
+      <br/>      
+      <br/>      
+      <br/>      
     </div>
 
     <div class="row onSubmitHint" id="onSubmitHint"></div>
@@ -107,12 +133,26 @@ function checkForm()
     $("#onSubmitHint").html("必须要上传纪念日的图片哦宝贝儿~");
     return false;
   }
+  if (document.forms["f"]["image"].value=="") {
+    if (document.forms["f"]["image1"].value!="" || document.forms["f"]["image2"].value!="" || document.forms["f"]["image3"].value!="") {
+      $("#onSubmitHint").html("请先添加封面图片再添加其他图片哦宝贝儿~");
+      return false;
+    }
+  }
   $("#imageUpload").remove();
+  $("#imageUpload1").remove();
+  $("#imageUpload2").remove();
+  $("#imageUpload3").remove();
   return true;
 }
 
+function addMorePic(element){
+  $(element).parent().hide();
+  $("#morePicDiv").show();
+}
+
 document.querySelector('#imageUpload').addEventListener('change', function () {
-    lrz(this.files[0],{width: 220,height: 350})
+    lrz(this.files[0],{width: 450,height: 450})
         .then(function (rst) {
             $("#imagePreview").attr('src',rst.base64);
             $("#imageBase64").text(rst.base64);
@@ -125,6 +165,52 @@ document.querySelector('#imageUpload').addEventListener('change', function () {
             // 不管是成功失败，都会执行
         });
 });
+
+document.querySelector('#imageUpload1').addEventListener('change', function () {
+    lrz(this.files[0],{width: 450,height: 450})
+        .then(function (rst) {
+            $("#imagePreview1").attr('src',rst.base64);
+            $("#imageBase641").text(rst.base64);
+        })
+        .catch(function (err) {
+            $("#onSubmitHint").html("啊哦，好像图片压缩失败了呢~快联系你哒宝贝儿老公~");
+            // 处理失败会执行
+        })
+        .always(function () {
+            // 不管是成功失败，都会执行
+        });
+});
+
+document.querySelector('#imageUpload2').addEventListener('change', function () {
+    lrz(this.files[0],{width: 450,height: 450})
+        .then(function (rst) {
+            $("#imagePreview2").attr('src',rst.base64);
+            $("#imageBase642").text(rst.base64);
+        })
+        .catch(function (err) {
+            $("#onSubmitHint").html("啊哦，好像图片压缩失败了呢~快联系你哒宝贝儿老公~");
+            // 处理失败会执行
+        })
+        .always(function () {
+            // 不管是成功失败，都会执行
+        });
+});
+
+document.querySelector('#imageUpload3').addEventListener('change', function () {
+    lrz(this.files[0],{width: 450,height: 450})
+        .then(function (rst) {
+            $("#imagePreview3").attr('src',rst.base64);
+            $("#imageBase643").text(rst.base64);
+        })
+        .catch(function (err) {
+            $("#onSubmitHint").html("啊哦，好像图片压缩失败了呢~快联系你哒宝贝儿老公~");
+            // 处理失败会执行
+        })
+        .always(function () {
+            // 不管是成功失败，都会执行
+        });
+});
+
 
 
 </script>
