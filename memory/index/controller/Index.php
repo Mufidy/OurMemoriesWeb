@@ -284,7 +284,7 @@ class Index extends Controller
             return $this->redirect('/showLogin?to=tomorrow');
         }
 
-        $typeCoRe = Db::query("select t.type,count(*) as count from todolist l,todoType t 
+        $typeCoRe = Db::query("select t.type,count(*) as count from todolist l,todotype t 
             where l.type=t.id and l.done=0 and l.deleted=0 group by l.type");
         $typeCount=array("food"=>0,"hotel"=>0,"shop"=>0,"travel"=>0,"life"=>0,"others"=>0);
         $countAll = 0;
@@ -294,7 +294,7 @@ class Index extends Controller
         }
         $typeCount["all"]=$countAll;
 
-        $typeCoReDone = Db::query("select t.type,count(*) as count from todolist l,todoType t 
+        $typeCoReDone = Db::query("select t.type,count(*) as count from todolist l,todotype t 
             where l.type=t.id and l.done=1 and l.deleted=0 group by l.type");
         $typeCountDone=array("food"=>0,"hotel"=>0,"shop"=>0,"travel"=>0,"life"=>0,"others"=>0);
         $countAllDone = 0;
@@ -304,9 +304,9 @@ class Index extends Controller
         }
         $typeCountDone["all"]=$countAllDone;
 
-        $todoItems = Db::query("select l.id,l.title,l.content,l.deadline,t.type,l.type as typeId from todolist l,todoType t
+        $todoItems = Db::query("select l.id,l.title,l.content,l.deadline,t.type,l.type as typeId from todolist l,todotype t
             where l.done=0 and l.deleted=0 and l.type=t.id order by l.deadline");
-        $todoItemsDone = Db::query("select l.id,l.title,l.content,l.deadline,t.type,l.type as typeId from todolist l,todoType t
+        $todoItemsDone = Db::query("select l.id,l.title,l.content,l.deadline,t.type,l.type as typeId from todolist l,todotype t
             where l.done=1 and l.deleted=0 and l.type=t.id order by l.deadline");
         for ($i=0; $i < count($todoItems); $i++) { 
             $todoItems[$i]['title']=htmlspecialchars($todoItems[$i]['title']);
