@@ -152,7 +152,7 @@ function addMorePic(element){
 }
 
 document.querySelector('#imageUpload').addEventListener('change', function () {
-    lrz(this.files[0],{width: 450,height: 450})
+    lrz(this.files[0],{width: 680,height: 680})
         .then(function (rst) {
             $("#imagePreview").attr('src',rst.base64);
             $("#imageBase64").text(rst.base64);
@@ -167,7 +167,7 @@ document.querySelector('#imageUpload').addEventListener('change', function () {
 });
 
 document.querySelector('#imageUpload1').addEventListener('change', function () {
-    lrz(this.files[0],{width: 450,height: 450})
+    lrz(this.files[0],{width: 680,height: 680})
         .then(function (rst) {
             $("#imagePreview1").attr('src',rst.base64);
             $("#imageBase641").text(rst.base64);
@@ -182,7 +182,7 @@ document.querySelector('#imageUpload1').addEventListener('change', function () {
 });
 
 document.querySelector('#imageUpload2').addEventListener('change', function () {
-    lrz(this.files[0],{width: 450,height: 450})
+    lrz(this.files[0],{width: 680,height: 680})
         .then(function (rst) {
             $("#imagePreview2").attr('src',rst.base64);
             $("#imageBase642").text(rst.base64);
@@ -197,7 +197,7 @@ document.querySelector('#imageUpload2').addEventListener('change', function () {
 });
 
 document.querySelector('#imageUpload3').addEventListener('change', function () {
-    lrz(this.files[0],{width: 450,height: 450})
+    lrz(this.files[0],{width: 680,height: 680})
         .then(function (rst) {
             $("#imagePreview3").attr('src',rst.base64);
             $("#imageBase643").text(rst.base64);
