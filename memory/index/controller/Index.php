@@ -45,7 +45,7 @@ class Index extends Controller
 	   		session('uid',$list["id"]);
        		session('username',$username);
             $this->logAction("登入系统   成功");
-	   		return $this->success($message,$to,'',1);
+	   		return $this->success($message,"/".$to,'',1);
 	   	}else
 	   	{
             $this->logAction("登入系统   失败",null,$username);
