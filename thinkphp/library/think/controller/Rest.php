@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006~2016 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2006~2017 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -11,8 +11,9 @@
 
 namespace think\controller;
 
-use think\Response;
+use think\App;
 use think\Request;
+use think\Response;
 
 abstract class Rest
 {
@@ -31,14 +32,14 @@ abstract class Rest
     ];
 
     /**
-     * 架构函数 取得模板对象实例
+     * 构造函数 取得模板对象实例
      * @access public
      */
     public function __construct()
     {
         // 资源类型检测
         $request = Request::instance();
-        $ext = $request->ext();
+        $ext     = $request->ext();
         if ('' == $ext) {
             // 自动检测资源类型
             $this->type = $request->type();
@@ -61,11 +62,10 @@ abstract class Rest
      * REST 调用
      * @access public
      * @param string $method 方法名
-     * @param array  $args   参数
      * @return mixed
      * @throws \Exception
      */
-    public function _empty($method, $args)
+    public function _empty($method)
     {
         if (method_exists($this, $method . '_' . $this->method . '_' . $this->type)) {
             // RESTFul方法支持
@@ -76,7 +76,7 @@ abstract class Rest
             $fun = $method . '_' . $this->method;
         }
         if (isset($fun)) {
-            return $this->$fun();
+            return App::invokeMethod([$this, $fun]);
         } else {
             // 抛出异常
             throw new \Exception('error action :' . $method);

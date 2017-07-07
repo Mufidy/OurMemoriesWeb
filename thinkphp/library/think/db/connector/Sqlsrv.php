@@ -21,12 +21,11 @@ class Sqlsrv extends Connection
 {
     // PDO连接参数
     protected $params = [
-        PDO::ATTR_CASE              => PDO::CASE_LOWER,
+        PDO::ATTR_CASE              => PDO::CASE_NATURAL,
         PDO::ATTR_ERRMODE           => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_STRINGIFY_FETCHES => false,
-        PDO::SQLSRV_ATTR_ENCODING   => PDO::SQLSRV_ENCODING_UTF8,
     ];
-
+    protected $builder = '\\think\\db\\builder\\Sqlsrv';
     /**
      * 解析pdo连接的dsn信息
      * @access protected
@@ -50,7 +49,6 @@ class Sqlsrv extends Connection
      */
     public function getFields($tableName)
     {
-        $this->initConnect(true);
         list($tableName) = explode(' ', $tableName);
         $sql             = "SELECT   column_name,   data_type,   column_default,   is_nullable
         FROM    information_schema.tables AS t
@@ -59,7 +57,8 @@ class Sqlsrv extends Connection
         AND t.table_schema  = c.table_schema
         AND t.table_name    = c.table_name
         WHERE   t.table_name = '$tableName'";
-        $pdo    = $this->linkID->query($sql);
+
+        $pdo    = $this->query($sql, [], false, true);
         $result = $pdo->fetchAll(PDO::FETCH_ASSOC);
         $info   = [];
         if ($result) {
@@ -74,6 +73,16 @@ class Sqlsrv extends Connection
                     'autoinc' => false,
                 ];
             }
+        }
+        $sql = "SELECT column_name FROM information_schema.key_column_usage WHERE table_name='$tableName'";
+        // 调试开始
+        $this->debug(true);
+        $pdo = $this->linkID->query($sql);
+        // 调试结束
+        $this->debug(false, $sql);
+        $result = $pdo->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            $info[$result['column_name']]['primary'] = true;
         }
         return $this->fieldCase($info);
     }
@@ -90,7 +99,8 @@ class Sqlsrv extends Connection
             FROM INFORMATION_SCHEMA.TABLES
             WHERE TABLE_TYPE = 'BASE TABLE'
             ";
-        $pdo    = $this->linkID->query($sql);
+
+        $pdo    = $this->query($sql, [], false, true);
         $result = $pdo->fetchAll(PDO::FETCH_ASSOC);
         $info   = [];
         foreach ($result as $key => $val) {

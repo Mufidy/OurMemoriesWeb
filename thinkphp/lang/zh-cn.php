@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006~2016 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2006~2017 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -13,10 +13,12 @@
 return [
     // 系统错误提示
     'Undefined variable'        => '未定义变量',
-    'Undefined index'           => '未定义索引',
+    'Undefined index'           => '未定义数组索引',
+    'Undefined offset'          => '未定义数组下标',
     'Parse error'               => '语法解析错误',
     'Type error'                => '类型错误',
     'Fatal error'               => '致命错误',
+    'syntax error'              => '语法错误',
 
     // 框架核心错误提示
     'dispatch type not support' => '不支持的调度类型',
@@ -25,12 +27,13 @@ return [
     'module not exists'         => '模块不存在',
     'controller not exists'     => '控制器不存在',
     'class not exists'          => '类不存在',
+    'property not exists'       => '类的属性不存在',
     'template not exists'       => '模板文件不存在',
     'illegal controller name'   => '非法的控制器名称',
     'illegal action name'       => '非法的操作名称',
     'url suffix deny'           => '禁止的URL后缀访问',
     'Route Not Found'           => '当前访问路由未定义',
-    'Underfined db type'        => '未定义数据库类型',
+    'Undefined db type'         => '未定义数据库类型',
     'variable type error'       => '变量类型错误',
     'PSR-4 error'               => 'PSR-4 规范错误',
     'not support total'         => '简洁模式下不能获取数据总数',
@@ -57,4 +60,9 @@ return [
     'tag error'                 => '模板标签错误',
     'cache write error'         => '缓存写入失败',
     'sae mc write error'        => 'SAE mc 写入错误',
+    'route name not exists'     => '路由标识不存在（或参数不够）',
+    'invalid request'           => '非法请求',
+    'bind attr has exists'      => '模型的属性已经存在',
+    'relation data not exists'  => '关联数据不存在',
+    'relation not support'      => '关联不支持',
 ];
