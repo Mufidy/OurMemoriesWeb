@@ -226,7 +226,7 @@ class Index extends Controller
         $updateData['highlight'] = $highlight;
         $updateData['content'] = $content;
         $updateData['togetherDay'] = $togetherDay;
-        //$updateData['updateTime'] = date("Y-m-d H:i:s");//database update automatically
+        $updateData['updateTime'] = date("Y-m-d H:i:s");
         $updateData['image'] = $image;
         $updateData['image1'] = $image1;
         $updateData['image2'] = $image2;
@@ -557,6 +557,7 @@ class Index extends Controller
         $updateData['image1'] = $image1;
         $updateData['image2'] = $image2;
         $updateData['image3'] = $image3;
+        $updateData['updateTime'] = date("Y-m-d H:i:s");
 
         Db::table('memorial')
         ->where('id', $id)
