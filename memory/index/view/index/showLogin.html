@@ -41,7 +41,7 @@ function checkForm()
 	var paraIndex = loca.indexOf("?to=");
 	if (paraIndex!=-1) {
 		var toStr = loca.substring(paraIndex+4);
-		document.getElementById('toNext').value=toStr;
+		document.getElementById('toNext').value="/"+toStr;
 	}
   	return true;
 }
